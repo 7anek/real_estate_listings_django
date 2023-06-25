@@ -1,0 +1,449 @@
+{
+    "props": {
+        "pageProps": {
+            "lang": "pl",
+            "_sentryTraceData": "929448eae6f040bc92eea399abccebc2-8ded4fc50b515911-0",
+            "_sentryBaggage": "sentry-environment=otodompl-prd,sentry-release=frontend-platform%402023-05-08_11.21-otodompl,sentry-transaction=%2F%5Blang%5D%2Foferta%2F%5Bid%5D,sentry-public_key=a87771f160f04e019f364675c25c0588,sentry-trace_id=929448eae6f040bc92eea399abccebc2,sentry-sample_rate=0.0001",
+            "experiments": {
+                "EUADS-2905": null,
+                "REPM-844": null,
+                "SFS-313": null,
+                "SFS-314": null,
+                "SFS-348": "b",
+                "SFS-572": null,
+                "SMR-1687": "b",
+                "SEE-1643": null,
+                "SEE-1075": null,
+                "SMR-2003": "b"
+            },
+            "id": "4ljpi",
+            "ad": {
+                "id": 64184836,
+                "market": "SECONDARY",
+                "services": [
+                    "E_SIGNATURE",
+                    "VIDEO_PRESENTATION",
+                    "VIDEO_MEETING"
+                ],
+                "publicId": "4ljpi",
+                "slug": "wyjatkowy-obiekt-inwestycyjny-w-centrum-chmielna-ID4ljpi",
+                "advertiserType": "business",
+                "advertType": "PRIVATE",
+                "createdAt": "2023-05-01T12:39:42+02:00",
+                "modifiedAt": "2023-05-02T10:07:37+02:00",
+                "description": "\u003cp\u003eNa sprzedaż wyjątkowe mikro mieszkanie dla inwestora przy ul.Chmielna obok Nowego Światu.\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eApartament się znajduje na pierwszym piętrze w zadbanej zabytkowej kamienicy z lat przedwojennych.\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eLokal się składa z pokoju z pełnowymiarowym łóżkiem 160x 200 oraz biurkiem z TV, łazienki z prysznicem oraz mini kuchni\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eIdealnie się nadaje pod najem krótkoterminowy na booking lub airbnb (ROI około 10-12%)\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eObecnie jest w trakcie remontu. Koniec prac jest przewidywany do końca czerwca\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003ePełna własność\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eZapraszamy do kontaktu\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e",
+                "developmentId": 0,
+                "developmentTitle": "",
+                "developmentUrl": "",
+                "exclusiveOffer": false,
+                "externalId": "",
+                "features": [],
+                "featuresByCategory": [],
+                "featuresWithoutCategory": [],
+                "openDay": {
+                    "date": null,
+                    "timeFrom": null,
+                    "timeTo": null,
+                    "__typename": "AdOpenDay"
+                },
+                "referenceId": "",
+                "target": {
+                    "Area": "12",
+                    "AreaRange": [],
+                    "Building_floors_num": "2",
+                    "Building_material": [
+                        "brick"
+                    ],
+                    "Building_ownership": [
+                        "full_ownership"
+                    ],
+                    "Building_type": [
+                        "tenement"
+                    ],
+                    "City": "warszawa",
+                    "City_id": "26",
+                    "Construction_status": [
+                        "ready_to_use"
+                    ],
+                    "Country": "Polska",
+                    "Floor_no": [
+                        "floor_1"
+                    ],
+                    "Heating": [
+                        "urban"
+                    ],
+                    "Id": "64184836",
+                    "MarketType": "secondary",
+                    "ObidoAdvert": "n",
+                    "OfferType": "sprzedaz",
+                    "Photo": "aHR0cHM6Ly9pcmVsYW5kLmFwb2xsby5vbHhjZG4uY29tL3YxL2ZpbGVzL2V5Sm1iaUk2SWpWaWNYaGxlWFZuZFhKaFl5MUJVRXdpTENKM0lqcGJleUptYmlJNkltVnVkbVp4Y1dVeFlYazBhekV0UVZCTUlpd2ljeUk2SWpFMElpd2ljQ0k2SWpFd0xDMHhNQ0lzSW1FaU9pSXdJbjFkZlEuNFNncGhxczc4X0pyRnBrcjFCak1HejJmMkUtN2hfSWNtc2ZWQ0RJZW5QNC9pbWFnZTtzPTY1NXg0OTE7cT04MA==",
+                    "Price": 397000,
+                    "PriceRange": [
+                        "250001-500000"
+                    ],
+                    "Price_per_m": 33083,
+                    "ProperType": "mieszkanie",
+                    "Province": "mazowieckie",
+                    "RegularUser": "n",
+                    "Remote_services": [
+                        "1"
+                    ],
+                    "Rent": 250,
+                    "Rooms_num": [
+                        "1"
+                    ],
+                    "Subregion": "powiat-warszawa",
+                    "Title": "V3lqxIV0a293eSBvYmlla3QgaW53ZXN0eWN5am55IHcgY2VudHJ1bSB8IENobWllbG5h",
+                    "Windows_type": [
+                        "wooden"
+                    ],
+                    "categoryId": "101",
+                    "env": "production",
+                    "hidePrice": "0",
+                    "seller_id": "8441434",
+                    "user_type": "agency"
+                },
+                "title": "Wyjątkowy obiekt inwestycyjny w centrum | Chmielna",
+                "topInformation": [
+                    {
+                        "label": "area",
+                        "values": [
+                            "12"
+                        ],
+                        "unit": "m²",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "building_ownership",
+                        "values": [
+                            "building_ownership::full_ownership"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "rooms_num",
+                        "values": [
+                            "1"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "construction_status",
+                        "values": [
+                            "construction_status-67::ready_to_use"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "floor",
+                        "values": [
+                            "floor_no::floor_1",
+                            "/2"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "outdoor",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "rent",
+                        "values": [
+                            "250 zł"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "car",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "remote_services",
+                        "values": [
+                            "remote_services::1"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "heating",
+                        "values": [
+                            "heating::urban"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    }
+                ],
+                "additionalInformation": [
+                    {
+                        "label": "market",
+                        "values": [
+                            "market::secondary"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "advertiser_type",
+                        "values": [
+                            "advertiser_type::agency"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "free_from",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "build_year",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "building_type",
+                        "values": [
+                            "building_type::tenement"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "windows_type",
+                        "values": [
+                            "windows_type::wooden"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "lift",
+                        "values": [
+                            "::n"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "media_types",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "security_types",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "equipment_types",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "extras_types",
+                        "values": [],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "building_material",
+                        "values": [
+                            "building_material-69::brick"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    }
+                ],
+                "url": "https://www.otodom.pl/pl/oferta/wyjatkowy-obiekt-inwestycyjny-w-centrum-chmielna-ID4ljpi",
+                "status": "active",
+                "adCategory": {
+                    "id": "101",
+                    "name": "FLAT",
+                    "type": "SELL",
+                    "__typename": "AdvertCategory"
+                },
+                "category": {
+                    "id": 101,
+                    "name": [
+                        {
+                            "locale": "pl",
+                            "value": "Mieszkania",
+                            "__typename": "LocalizedString"
+                        },
+                        {
+                            "locale": "uk",
+                            "value": "Квартира",
+                            "__typename": "LocalizedString"
+                        }
+                    ],
+                    "__typename": "AdCategory"
+                },
+                "characteristics": [
+                    {
+                        "key": "price",
+                        "value": "397000",
+                        "label": "Cena",
+                        "localizedValue": "397 000 zł",
+                        "currency": "PLN",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "m",
+                        "value": "12",
+                        "label": "Powierzchnia",
+                        "localizedValue": "12 m²",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "price_per_m",
+                        "value": "33083",
+                        "label": "cena za metr",
+                        "localizedValue": "33 083 zł/m²",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "remote_services",
+                        "value": "1",
+                        "label": "Obsługa zdalna",
+                        "localizedValue": "Tak",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "rooms_num",
+                        "value": "1",
+                        "label": "Liczba pokoi",
+                        "localizedValue": "1",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "market",
+                        "value": "secondary",
+                        "label": "Rynek",
+                        "localizedValue": "wtórny",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "building_type",
+                        "value": "tenement",
+                        "label": "Rodzaj zabudowy",
+                        "localizedValue": "kamienica",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "floor_no",
+                        "value": "floor_1",
+                        "label": "Piętro",
+                        "localizedValue": "1",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "building_floors_num",
+                        "value": "2",
+                        "label": "Liczba pięter",
+                        "localizedValue": "2",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "building_material",
+                        "value": "brick",
+                        "label": "Materiał budynku",
+                        "localizedValue": "cegła",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "windows_type",
+                        "value": "wooden",
+                        "label": "Okna",
+                        "localizedValue": "drewniane",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "heating",
+                        "value": "urban",
+                        "label": "Ogrzewanie",
+                        "localizedValue": "miejskie",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "construction_status",
+                        "value": "ready_to_use",
+                        "label": "Stan wykończenia",
+                        "localizedValue": "do zamieszkania",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "rent",
+                        "value": "250",
+                        "label": "Czynsz",
+                        "localizedValue": "250 zł",
+                        "currency": "PLN",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "building_ownership",
+                        "value": "full_ownership",
+                        "label": "Forma własności",
+                        "localizedValue": "pełna własność",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    }
+                ],
+                "images": [
+                    {
+                        "thumbnail": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjVicXhleXVndXJhYy1BUEwiLCJ3IjpbeyJmbiI6ImVudmZxcWUxYXk0azEtQVBMIiwicyI6IjE0IiwicCI6IjEwLC0xMCIsImEiOiIwIn1dfQ.4Sgphqs78_JrFpkr1BjMGz2f2E-7h_IcmsfVCDIenP4/image;s=184x138;q=80",
+                        "small": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjVicXhleXVndXJhYy1BUEwiLCJ3IjpbeyJmbiI6ImVudmZxcWUxYXk0azEtQVBMIiwicyI6IjE0IiwicCI6IjEwLC0xMCIsImEiOiIwIn1dfQ.4Sgphqs78_JrFpkr1BjMGz2f2E-7h_IcmsfVCDIenP4/image;s=314x236;q=80",
+                        "medium": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjVicXhleXVndXJhYy1BUEwiLCJ3IjpbeyJmbiI6ImVudmZxcWUxYXk0azEtQVBMIiwicyI6IjE0IiwicCI6IjEwLC0xMCIsImEiOiIwIn1dfQ.4Sgphqs78_JrFpkr1BjMGz2f2E-7h_IcmsfVCDIenP4/image;s=655x491;q=80",
+                        "large": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjVicXhleXVndXJhYy1BUEwiLCJ3IjpbeyJmbiI6ImVudmZxcWUxYXk0azEtQVBMIiwicyI6IjE0IiwicCI6IjEwLC0xMCIsImEiOiIwIn1dfQ.4Sgphqs78_JrFpkr1BjMGz2f2E-7h_IcmsfVCDIenP4/image;s=1280x1024;q=80",
+                        "__typename": "AdImage"
+                    },
+                    {
+                        "thumbnail": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjhzMGppN2owYXk0ejItQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.ES-oavlthsWshBHT3725wQUom-Z1BlRvEegWrXuBwRs/image;s=184x138;q=80",
+                        "small": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjhzMGppN2owYXk0ejItQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.ES-oavlthsWshBHT3725wQUom-Z1BlRvEegWrXuBwRs/image;s=314x236;q=80",
+                        "medium": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjhzMGppN2owYXk0ejItQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.ES-oavlthsWshBHT3725wQUom-Z1BlRvEegWrXuBwRs/image;s=655x491;q=80",
+                        "large": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6IjhzMGppN2owYXk0ejItQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.ES-oavlthsWshBHT3725wQUom-Z1BlRvEegWrXuBwRs/image;s=1280x1024;q=80",
+                        "__typename": "AdImage"
+                    },
+                    {
+                        "thumbnail":"https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImZ6d3dtZDNreHJqYi1BUEwiLCJ3IjpbeyJmbiI6ImVudmZxcWUxYXk0azEtQVBMIiwicyI6IjE0IiwicCI6IjEwLC0xMCIsImEiOiIwIn1dfQ.3Sprmc9mXz…

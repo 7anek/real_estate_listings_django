@@ -1,0 +1,23 @@
+{% extends 'properties_scrapy/main-theme.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Scrape{% endblock %}
+
+{% block sidebar %}
+                    <h1>Crawl</h1>
+                    <form action="{% url 'crawl' %}" method="post">
+                        {% csrf_token %}
+                        {{search_form|crispy}}
+                        {{search_form.media}}
+                        <input type="submit" value="Submit">
+                    </form>
+{% endblock %} 
+
+{% block body %}
+
+{% if error %}
+{{error}}
+{% else %}
+{% include "properties_scrapy/crawl_status.html" %}
+{% endif %}
+
+{% endblock %}

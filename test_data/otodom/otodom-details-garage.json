@@ -1,0 +1,388 @@
+{
+    "props": {
+        "pageProps": {
+            "lang": "pl",
+            "_sentryTraceData": "27690b475356417f800c2c6dccc3e199-bb9d734e8404d0cb-0",
+            "_sentryBaggage": "sentry-environment=otodompl-prd,sentry-release=frontend-platform%402023-05-08_14.41-otodompl,sentry-transaction=%2F%5Blang%5D%2Foferta%2F%5Bid%5D,sentry-public_key=a87771f160f04e019f364675c25c0588,sentry-trace_id=27690b475356417f800c2c6dccc3e199,sentry-sample_rate=0.0001",
+            "experiments": {
+                "EUADS-2905": null,
+                "REPM-844": null,
+                "SFS-313": null,
+                "SFS-314": null,
+                "SFS-348": "b",
+                "SFS-572": null,
+                "SMR-1687": "b",
+                "SEE-1643": null,
+                "SEE-1075": null,
+                "SMR-2003": "b"
+            },
+            "id": "4bVDv",
+            "ad": {
+                "id": 61952354,
+                "market": "PRIMARY",
+                "services": [
+                    "E_SIGNATURE",
+                    "VIDEO_PRESENTATION",
+                    "VIDEO_MEETING"
+                ],
+                "publicId": "4bVDv",
+                "slug": "garaz-podziemny-ul-magazynowa-9-miejsce-postojowe-ID4bVDv",
+                "advertiserType": "private",
+                "advertType": "PRIVATE",
+                "createdAt": "2021-06-12T12:45:31+02:00",
+                "modifiedAt": "2023-05-04T13:54:25+02:00",
+                "description": "\u003cp\u003eMiejsca postojowe w garażu podziemnym ul. Magazynowa 9 \u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eBudynek z 2018roku, garaż monitorowany, sprzątany co ok.2mies, uchwyty na rowery\u003c/p\u003e\r\n\u003cp\u003eDożywotni darmowy dostęp do MokoClub (Bilard, TV, kuchnia, łazienka na wyłączność)\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003e\u003c/p\u003e\r\n\u003cp\u003eHala garażowa posiada swoją księgę wieczystą a każde miejsce sprzedawane jest jako udział w hali garażowej\u003c/p\u003e\r\n\u003cp\u003e \u003c/p\u003e",
+                "developmentId": 0,
+                "developmentTitle": "",
+                "developmentUrl": "",
+                "exclusiveOffer": false,
+                "externalId": "",
+                "features": [],
+                "featuresByCategory": [],
+                "featuresWithoutCategory": [],
+                "openDay": {
+                    "date": null,
+                    "timeFrom": null,
+                    "timeTo": null,
+                    "__typename": "AdOpenDay"
+                },
+                "referenceId": "",
+                "target": {
+                    "Area": "15",
+                    "AreaRange": [],
+                    "City": "warszawa",
+                    "City_id": "26",
+                    "Country": "Polska",
+                    "Heating": [
+                        "n"
+                    ],
+                    "Id": "61952354",
+                    "Lighting": [
+                        "y"
+                    ],
+                    "Localization": [
+                        "in_building"
+                    ],
+                    "MarketType": "primary",
+                    "ObidoAdvert": "n",
+                    "OfferType": "sprzedaz",
+                    "Photo": "aHR0cHM6Ly9pcmVsYW5kLmFwb2xsby5vbHhjZG4uY29tL3YxL2ZpbGVzL2V5Sm1iaUk2SW1aamJHVTFZamhxZVhweWFETXRRVkJNSWl3aWR5STZXM3NpWm00aU9pSmxiblptY1hGbE1XRjVOR3N4TFVGUVRDSXNJbk1pT2lJeE5DSXNJbkFpT2lJeE1Dd3RNVEFpTENKaElqb2lNQ0o5WFgwLktDTldwRjNQeE0zcTJYYjNpa2tVWlFFTFNDVlBzV29yWERTRzdpcDYyNHMvaW1hZ2U7cz02NTV4NDkxO3E9ODA=",
+                    "Price": 46500,
+                    "PriceRange": [
+                        "20001-50000"
+                    ],
+                    "ProperType": "garaz",
+                    "Province": "mazowieckie",
+                    "RegularUser": "y",
+                    "Remote_services": [
+                        "1"
+                    ],
+                    "Structure": [
+                        "brick"
+                    ],
+                    "Subregion": "powiat-warszawa",
+                    "Title": "R2FyYcW8IHBvZHppZW1ueSB1bC5NYWdhenlub3dhIDkgTWllanNjZSBwb3N0b2pvd2U=",
+                    "categoryId": "701",
+                    "env": "production",
+                    "hidePrice": "0",
+                    "seller_id": "2025400",
+                    "user_type": "private"
+                },
+                "title": "Garaż podziemny ul.Magazynowa 9 Miejsce postojowe",
+                "topInformation": [
+                    {
+                        "label": "area",
+                        "values": [
+                            "15"
+                        ],
+                        "unit": "m²",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "lighting",
+                        "values": [
+                            "lighting::y"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "localization",
+                        "values": [
+                            "localization::in_building"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "heating",
+                        "values": [
+                            "heating::n"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "structure",
+                        "values": [
+                            "structure-45::brick"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "advertiser_type",
+                        "values": [
+                            "advertiser_type::private"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "remote_services",
+                        "values": [
+                            "remote_services::1"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    },
+                    {
+                        "label": "market",
+                        "values": [
+                            "market::primary"
+                        ],
+                        "unit": "",
+                        "__typename": "AdditionalInfo"
+                    }
+                ],
+                "additionalInformation": [],
+                "url": "https://www.otodom.pl/pl/oferta/garaz-podziemny-ul-magazynowa-9-miejsce-postojowe-ID4bVDv",
+                "status": "active",
+                "adCategory": {
+                    "id": "701",
+                    "name": "GARAGE",
+                    "type": "SELL",
+                    "__typename": "AdvertCategory"
+                },
+                "category": {
+                    "id": 701,
+                    "name": [
+                        {
+                            "locale": "pl",
+                            "value": "Garaże",
+                            "__typename": "LocalizedString"
+                        },
+                        {
+                            "locale": "uk",
+                            "value": "Парковка",
+                            "__typename": "LocalizedString"
+                        }
+                    ],
+                    "__typename": "AdCategory"
+                },
+                "characteristics": [
+                    {
+                        "key": "price",
+                        "value": "46500",
+                        "label": "Cena",
+                        "localizedValue": "46 500 zł",
+                        "currency": "PLN",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "m",
+                        "value": "15",
+                        "label": "Powierzchnia",
+                        "localizedValue": "15 m²",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "market",
+                        "value": "primary",
+                        "label": "Rynek",
+                        "localizedValue": "pierwotny",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "remote_services",
+                        "value": "1",
+                        "label": "Obsługa zdalna",
+                        "localizedValue": "Tak",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "structure",
+                        "value": "brick",
+                        "label": "Konstrukcja",
+                        "localizedValue": "murowany",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "localization",
+                        "value": "in_building",
+                        "label": "Lokalizacja",
+                        "localizedValue": "w budynku",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "lighting",
+                        "value": "y",
+                        "label": "Oświetlenie",
+                        "localizedValue": "tak",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    },
+                    {
+                        "key": "heating",
+                        "value": "n",
+                        "label": "Ogrzewanie",
+                        "localizedValue": "nie",
+                        "currency": "",
+                        "suffix": "",
+                        "__typename": "Characteristic"
+                    }
+                ],
+                "images": [
+                    {
+                        "thumbnail": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImZjbGU1YjhqeXpyaDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.KCNWpF3PxM3q2Xb3ikkUZQELSCVPsWorXDSG7ip624s/image;s=184x138;q=80",
+                        "small": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImZjbGU1YjhqeXpyaDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.KCNWpF3PxM3q2Xb3ikkUZQELSCVPsWorXDSG7ip624s/image;s=314x236;q=80",
+                        "medium": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImZjbGU1YjhqeXpyaDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.KCNWpF3PxM3q2Xb3ikkUZQELSCVPsWorXDSG7ip624s/image;s=655x491;q=80",
+                        "large": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImZjbGU1YjhqeXpyaDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.KCNWpF3PxM3q2Xb3ikkUZQELSCVPsWorXDSG7ip624s/image;s=1280x1024;q=80",
+                        "__typename": "AdImage"
+                    },
+                    {
+                        "thumbnail": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImhnZzJkdXE5OG91cTMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.EvuJo28sc15DBL1RUQU-TNCSqjZxxqIAcccl1TcamRw/image;s=184x138;q=80",
+                        "small": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImhnZzJkdXE5OG91cTMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.EvuJo28sc15DBL1RUQU-TNCSqjZxxqIAcccl1TcamRw/image;s=314x236;q=80",
+                        "medium": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImhnZzJkdXE5OG91cTMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.EvuJo28sc15DBL1RUQU-TNCSqjZxxqIAcccl1TcamRw/image;s=655x491;q=80",
+                        "large": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6ImhnZzJkdXE5OG91cTMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.EvuJo28sc15DBL1RUQU-TNCSqjZxxqIAcccl1TcamRw/image;s=1280x1024;q=80",
+                        "__typename": "AdImage"
+                    },
+                    {
+                        "thumbnail": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6InZhb3AyMXllcW54cDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.6E7a0l_VgZ1PqzvL_V30o6WZcw-PEsxmcs5vWzhrkzU/image;s=184x138;q=80",
+                        "small": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6InZhb3AyMXllcW54cDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.6E7a0l_VgZ1PqzvL_V30o6WZcw-PEsxmcs5vWzhrkzU/image;s=314x236;q=80",
+                        "medium": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6InZhb3AyMXllcW54cDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.6E7a0l_VgZ1PqzvL_V30o6WZcw-PEsxmcs5vWzhrkzU/image;s=655x491;q=80",
+                        "large": "https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6InZhb3AyMXllcW54cDMtQVBMIiwidyI6W3siZm4iOiJlbnZmcXFlMWF5NGsxLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.6E7a0l_VgZ1PqzvL_V30o6WZcw-PEsxmcs5vWzhrkzU/image;s=1280x1024;q=80",
+                        "__typename": "AdImage"
+                    }
+                ],
+                "links": {
+                    "localPlanUrl": "",
+                    "videoUrl": "",
+                    "view3dUrl": "",
+                    "walkaroundUrl": "",
+                    "__typename": "AdvertLinks"
+                },
+                "location": {
+                    "id": null,
+                    "coordinates": {
+                        "latitude": 52.1855391,
+                        "longitude": 21.0048773,
+                        "__typename": "Coordinates"
+                    },
+                    "mapDetails": {
+                        "radius": 0,
+                        "zoom": 16,
+                        "__typename": "MapDetails"
+                    },
+                    "address": {
+                        "street": {
+                            "id": "77939",
+                            "code": "",
+                            "name": "ul. Magazynowa",
+                            "number": "9",
+                            "__typename": "Street"
+                        },
+                        "subdistrict": null,
+                        "district": {
+                            "id": "39",
+                            "code": "mokotow",
+                            "name": "Mokotów",
+                            "__typename": "District"
+                        },
+                        "city": {
+                            "id": "26",
+                            "code": "warszawa",
+                            "name": "Warszawa",
+                            "__typename": "City"
+                        },
+                        "municipality": null,
+                        "county": {
+                            "id": "197",
+                            "code": "powiat-warszawa",
+                            "name": "Warszawa",
+                            "__typename": "County"
+                        },
+                        "province": {
+                            "id": "7",
+                            "code": "mazowieckie",
+                            "name": "mazowieckie",
+                            "__typename": "Province"
+                        },
+                        "postalCode": null,
+                        "__typename": "Address"
+                    },
+                    "__typename": "LocationDetails"
+                },
+                "property": null,
+                "owner": {
+                    "id": 2025400,
+                    "name": "Bartosz",
+                    "type": "private",
+                    "phones": [
+                        "+48503327188"
+                    ],
+                    "imageUrl": "",
+                    "contacts": [],
+                    "__typename": "LegacyAdvertOwner"
+                },
+                "agency": null,
+                "seo": {
+                    "title": "15 m², garaż na sprzedaż - Warszawa, Mokotów - 61952354 • www.otodom.pl",
+                    "description": "Okazja: Garaż na sprzedaż w miejscowości Warszawa, Mokotów, za cenę 46 500 zł. Ten garaż na sprzedaż ma 15 m² powierzchni a Właściciel jako najważniejsze zalety działki wymienia: Oświetlenie. Otodom 61952354",
+                    "__typename": "AdvertSeo"
+                },
+                "breadcrumbs": [
+                    {
+                        "label": "Garaż na sprzedaż",
+                        "locative": "",
+                        "url": "https://www.otodom.pl/pl/oferty/sprzedaz/garaz",
+                        "__typename": "AdvertBreadcrumb"
+                    },
+                    {
+                        "label": "mazowieckie",
+                        "locative": "mazowieckie",
+                        "url": "https://www.otodom.pl/pl/oferty/sprzedaz/garaz/mazowieckie",
+                        "__typename": "AdvertBreadcrumb"
+                    },
+                    {
+                        "label": "Warszawa",
+                        "locative": "Warszawa",
+                        "url": "https://www.otodom.pl/pl/oferty/sprzedaz/garaz/warszawa",
+                        "__typename": "AdvertBreadcrumb"
+                    },
+                    {
+                        "label": "Mokotów",
+                        "locative": "Mokotów",
+                        "url": "https://www.otodom.pl/pl/oferty/sprzedaz/garaz/warszawa/mokotow",
+                        "__typename": "AdvertBreadcrumb"
+                    },
+                    {
+                        "label": "ul. Magazynowa 9",
+                        "locative": "ul. Magazynowa 9",
+                        "url": "",
+                        "__typename": "AdvertBreadcrumb"
+                    },
+                    {
+                        "label":"Gar…

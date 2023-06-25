@@ -1,0 +1,32 @@
+{
+    "@context": "https:\/\/schema.org",
+    "@graph": [
+        {
+            "@type": "Apartment",
+            "description": "Przedmiotem sprzedaży jest mieszkanie w Grodzisku Maz w atrakcyjnej lokalizacji przy ul. Grunwaldzkiej, 5 minut od stacji WKD, do stacji PKP 10 minut. Mieszkanie ma powierzchnie 47 m2 i składa się z: 3 pokoi, oddzielnej kuchni, łazienki z WC i przedpokoju. Do mieszkania przynależy piwnica w cenie nieruchomości. Opis oferty: 3 Pokoje z oddzielną kuchnią 47 m2 Piętro 4\/4 Do odświeżenia Idealne także pod najem Budynek z 1980r Spółdzielczo-własnościowe z KW Okolica: Rozbudowana infrastruktura komuni...",
+            "name": "Mieszkanie Grodzisk Mazowiecki, ul. Grunwaldzka",
+            "image": "https:\/\/d-gr.cdngr.pl\/kadry\/k\/r\/gr-ogl\/f6\/45\/30116547_807782697_mieszkanie-grodzisk-mazowiecki-ul-grunwaldzka_small_256x175.jpg",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "Polska",
+                "addressLocality": "Grodzisk Mazowiecki",
+                "addressRegion": "mazowieckie",
+                "streetAddress": "Grunwaldzka"
+            },
+            "url": "https:\/\/gratka.pl\/nieruchomosci\/mieszkanie-grodzisk-mazowiecki-ul-grunwaldzka\/ob\/30116547",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 52.1007072,
+                "longitude": 20.6199585
+            },
+            "numberOfRooms": 3,
+            "floorLevel": 4,
+            "floorSize": {
+                "@type": "QuantitativeValue",
+                "value": 47,
+                "unitCode": "MTK"
+            },
+            "yearBuilt": 1980
+        }
+    ]
+}

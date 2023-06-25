@@ -1,0 +1,60 @@
+window.__NUXT__=(function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,_,$,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao){return {layout: "default",data: [
+            {propertyData: {adKeywords: "{\"typstr\":\"strona_z_ogloszeniem\",\"kat\":\"nieruchomosci\",\"podkat\":\"mieszkania\",\"region\":\"mazowieckie\",\"miasto\":\"\",\"typoferty\":\"sprzedaz\",\"rynek\":\"wtorny\",\"cena_od\":100000,\"cena_do\":500000,\"powierzchnia_od\":1,\"powierzchnia_do\":50,\"target_url_params\":\"%7B%22title%22%3A%22bWllc3prYW5pZSUyMG5hJTIwc3ByemVkYSVDNSVCQyUyMGdyb2R6aXNraSUyQyUyMEdyb2R6aXNrJTIwTWF6b3dpZWNraSUyMER3b3Jza2E%3D%22%2C%22image%22%3A%22aHR0cHM6Ly9pbWcxLnN0YXRpY21vcml6b24uY29tLnBsL3RodW1ibmFpbC9hSFIwY0RvdkwyMWxaR2xoTG1SdmJYa3VjR3d2YVcxbkwzcGthbVZqYVdFdlltNXJkMkZrY21GME1TOWhMMkp1YTNkaFpISmhkREZmYlhOZk16Y3dKVEkxTWtZeE1UUTBOeVV5TlRKR1QwMVRYekV1YW5CbkkzWTlNVjh5T0RReU1qSTJNREkzLzYxOC8yODAvNC9taWVzemthbmllLW5hLXNwcnplZGF6LWdyb2R6aXNrLW1hem93aWVja2ktZHdvcnNrYS00OC1tLmpwZw%3D%3D%22%2C%22price%22%3A370000%7D\"}",advertisementText: "48m2, 2 pokoje, parter, Grodzisk Mazowiecki",area: "48",buildingDetailedInformation: [
+                        {label: "Typ budynku",value: "BLOK",url:h
+                        },
+                        {label: "Ogrzewanie",value: "C.O. Z SIECI MIEJSKIEJ",url:h
+                        }
+                    ],contact: {company: {address: [
+                                "Samorządowa 9 \u002F 1",
+                                "05-400 Otwock"
+                            ],faxes: [],logo: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL2xvZ28vNjE2NTEjdj0xNjgzNTczNDI5\u002F135\u002F72\u002F1\u002Fgrupa-inwestycyjna-kwadrat-sp-z-o-o.png",alt:I
+                            },name:I,phones: [
+                                "789 222 546",
+                                "605 976 806"
+                            ],type: "AGENCY"
+                        },contactComment: [],person: {faxes: [],name:J,phones: [
+                                "789333181"
+                            ],photo: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3V6eXRrb3duaWN5L2QwMDcxOGMwODFjY2U2NmM4YjlkZGE2YTM1NmJhMDlkLmpwZw==\u002F300\u002F300\u002F64\u002Fmonika-bogucka.jpg",alt:J
+                            },type: "AGENT"
+                        }
+                    },dataLayer: "{\"property\":{\"id\":1536878439,\"url\":\"https:\\\u002F\\\u002Fwww.morizon.pl\\\u002Foferta\\\u002Fsprzedaz-mieszkanie-grodziski-grodzisk-mazowiecki-dworska-48m2-mzn2041928944\",\"living_area\":48,\"street\":\"Dworska\",\"transaction\":\"sprzeda\\u017c\",\"owner\":\"agencja nieruchomo\\u015bci\",\"ownership\":\"Grupa Inwestycyjna Kwadrat Sp. z o.o.\",\"price\":370000,\"price_m2\":7708,\"location\":\"mazowieckie grodziski Grodzisk Mazowiecki\",\"market\":\"wt\\u00f3rny\",\"market_type\":\"secondary\",\"photo_url\":\"https:\\\u002F\\\u002Fimg1.staticmorizon.com.pl\\\u002Fthumbnail\\\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9hL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzEuanBnI3Y9MV8yODQyMjI2MDI3\\\u002F1280\\\u002F768\\\u002F16\\\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg\",\"country\":\"pl\",\"type\":\"mieszkania\",\"lendi_type\":\"Apartment\",\"residence_area\":48,\"number_of_rooms\":2,\"has_elevator\":true,\"is_luxury\":false,\"city\":\"Grodzisk Mazowiecki\",\"county\":\"grodziski\",\"province\":\"mazowieckie\"},\"company\":{\"crm_id\":61651,\"name\":\"Grupa Inwestycyjna Kwadrat Sp. z o.o.\",\"type\":\"agencja\"},\"company_agent\":{\"id\":170615,\"name\":\"Monika Bogucka\"},\"location\":{\"city\":\"Grodzisk Mazowiecki\"}}",description: "\u003Cp\u003ENa sprzedaż 2-pokojowe mieszkanie położone w Grodzisku Mazowieckim. \u003C\u002Fp\u003E\u003Cp\u003EMIESZKANIE \u003C\u002Fp\u003E\u003Cp\u003EMieszkanie o metrażu 48m2 składa się z:\u003C\u002Fp\u003E\u003Cp\u003E- przedpokoju\u003C\u002Fp\u003E\u003Cp\u003E- kuchni\u003C\u002Fp\u003E\u003Cp\u003E- dwóch pokoi, w tym jeden z loggią\u003C\u002Fp\u003E\u003Cp\u003E- łazienki\u003C\u002Fp\u003E\u003Cp\u003E- oraz oddzielnego wc\u003C\u002Fp\u003E\u003Cp\u003EBUDYNEK \u003C\u002Fp\u003E\u003Cp\u003ELokal znajduje się na parterze w sześciopiętrowym bloku. Miejsca parkingowe dostępne są przed blokiem.\u003C\u002Fp\u003E\u003Cp\u003EATRAKCYJNA LOKALIZACJA \u003C\u002Fp\u003E\u003Cp\u003EOkolica ze znakomicie rozwiniętą infrastrukturą, m.in. \u003C\u002Fp\u003E\u003Cp\u003E- sklepy spożywcze, apteki\u003C\u002Fp\u003E\u003Cp\u003E- szkoły i przedszkola , place zabaw  \u003C\u002Fp\u003E\u003Cp\u003EGorąco polecam i zachęcam do kontaktu w celu umówienia wizytacji.\u003C\u002Fp\u003E\u003Cp\u003EOferta wysłana z programu dla biur nieruchomości ASARI CRM (asaricrm.com)\u003C\u002Fp\u003E",detailedInformation: [
+                        {label: "Stan nieruchomości",value: "DO REMONTU",url:h
+                        },
+                        {label: "Pow. całkowita",value: "48 m²",url:h
+                        },
+                        {label: "Rynek",value: "Wtórny",url:h
+                        },
+                        {label: "Forma własności",value: "SPÓŁDZIELCZE WŁASNOŚCIOWE",url:h
+                        }
+                    ],equipments: [],facilities: [
+                        {icon: "elevator",label: "Winda"
+                        }
+                    ],floorFormatted: "parter",headerTitle: "Mieszkanie na sprzedaż",id: 1536878439,idOnFrontend: "mzn2041928944",lendiMortgageCalculationUrl: "https:\u002F\u002Fwww.lendi.pl\u002Fformularz\u002Fkredyty-hipoteczne?utm_data_grabber=form_before_installment_comparer&utm_form=heading_check_installment&utm_fp_partner_id=551&utm_fp_source_id=91&utm_interest=installment_calculation&utm_loan_category=Mortgage&utm_keyword=sprawdz_rate&utm_medium=offer_website&utm_source=morizon.pl&hypothecValue=370000.00&loanPurpose.what=Apartment&loanPurpose.market=SecondaryMarket&meeting_voivoidship=mazowieckie&meeting_city=Grodzisk+Mazowiecki+%28gm.%29",lendiMortgageFormCalculationUrl: "https:\u002F\u002Fwww.lendi.pl\u002Fformularz\u002Fkredyty-hipoteczne?utm_data_grabber=form_before_installment_comparer&utm_fp_partner_id=551&utm_fp_source_id=91&utm_form=installment_widget&utm_interest=installment_calculation&utm_keyword=oblicz_rate&utm_loan_category=Mortgage&utm_medium=offer_website&utm_source=morizon.pl&hypothecValue=%7B%7BhypothecValue%7D%7D&loanPeriod=%7B%7BloanPeriod%7D%7D&loanPurpose.what=Apartment&loanPurpose.market=SecondaryMarket&meeting_voivoidship=mazowieckie&meeting_city=Grodzisk+Mazowiecki&meeting_community=Grodzisk+Mazowiecki+%28gm.%29",location: {countryCode: "PL",location: [
+                            "Grodziski",K
+                        ],map: {center: {latitude: 52.105964,longitude: 20.6348173
+                            },zoom: 17
+                        },number:h,street: "Dworska"
+                    },marketType: "Rynek wtórny",numberOfRooms: "2 pokoje",offerDetailedInformation: [
+                        {label: "Data dodania",value: "14.04.2023"
+                        },
+                        {label: "Aktualizacja",value: "26.04.2023"
+                        },
+                        {label: "Numer ogłoszenia",value: "morizon-370\u002F11447\u002FOMS"
+                        }
+                    ],photos: [
+                        {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9hL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzEuanBnI3Y9MV8yODQyMjI2MDI3\u002F832\u002F468\u002F2\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",thumbnail: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9hL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzEuanBnI3Y9MV8yODQyMjI2MDI3\u002F618\u002F280\u002F4\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",alt: "Mieszkanie na sprzedaż 48m2 grodziski Grodzisk Mazowiecki Dworska - zdjęcie 1"
+                            }
+                        },
+                        {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS85L2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzIuanBnI3Y9MV8yODQyMjI2MDI4\u002F832\u002F468\u002F2\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",thumbnail: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS85L2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzIuanBnI3Y9MV8yODQyMjI2MDI4\u002F618\u002F280\u002F4\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",alt: "Mieszkanie na sprzedaż 48m2 grodziski Grodzisk Mazowiecki Dworska - zdjęcie 2"
+                            }
+                        },
+                        {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9hL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzMuanBnI3Y9MV8yODQyMjI2MDI5\u002F832\u002F468\u002F2\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",thumbnail: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9hL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzMuanBnI3Y9MV8yODQyMjI2MDI5\u002F618\u002F280\u002F4\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",alt: "Mieszkanie na sprzedaż 48m2 grodziski Grodzisk Mazowiecki Dworska - zdjęcie 3"
+                            }
+                        },
+                        {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS85L2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzQuanBnI3Y9MV8yODQyMjI2MDMw\u002F832\u002F468\u002F2\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",thumbnail: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS85L2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzQuanBnI3Y9MV8yODQyMjI2MDMw\u002F618\u002F280\u002F4\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",alt: "Mieszkanie na sprzedaż 48m2 grodziski Grodzisk Mazowiecki Dworska - zdjęcie 4"
+                            }
+                        },
+                        {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9iL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzUuanBnI3Y9MV8yODQyMjI2MDMx\u002F832\u002F468\u002F2\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",thumbnail: {url: "https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS9iL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzUuanBnI3Y9MV8yODQyMjI2MDMx\u002F618\u002F280\u002F4\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m.jpg",alt: "Mieszkanie na sprzedaż 48m2 grodziski Grodzisk Mazowiecki Dworska - zdjęcie 5"
+                            }
+                        },
+                        {url:"https:\u002F\u002Fimg1.staticmorizon.com.pl\u002Fthumbnail\u002FaHR0cDovL21lZGlhLmRvbXkucGwvaW1nL3pkamVjaWEvYm5rd2FkcmF0MS8wL2Jua3dhZHJhdDFfbXNfMzcwJTI1MkYxMTQ0NyUyNTJGT01TXzYuanBnI3Y9MV8yODQyMjI2MDMy\u002F832\u002F468\u002F2\u002Fmieszkanie-na-sprzedaz-grodzisk-mazowiecki-dworska-48-m…

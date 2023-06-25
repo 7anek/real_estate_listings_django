@@ -1,0 +1,33 @@
+{% if error %}
+{{ error }}
+{%else%}
+<p>Liczba wyników: {{search_results.objects|length }}</p>
+<div class="search-results">
+{% for result in search_results.objects %}
+<div class="card">
+    <div class="row g-0">
+        <div class="col-md-3">
+            {% if result.main_image_url %}<img class="list-item card-img-top" src="{{ result.main_image_url }}" alt="{{ result.title }}">{% endif %}
+        </div>
+        <div class="col-md-9">
+            <div class="card-body result-item">
+                <h3 class="card-title">{{ result.title }}</h3>
+                <p class="card-text">
+                    <span>Ogłoszenie z serwisu {{ result.service }}.</span>
+                    <span>Cena: {{ result.price }}.</span>
+                    {% comment %} <span>Cena za metr: {{ result.price_per_square_meter }}.</span> {% endcomment %}
+                    <span>Powierzchnia: {{ result.area }}.</span>
+                    {% if result.number_of_rooms %}<span>Liczba pokoi: {{ result.number_of_rooms }}.</span>{% endif %}
+                </p>
+                {% comment %} <a href="{{ result.offer_url }}" class="btn btn-primary">Wyświetl</a> {% endcomment %}
+                {% if result.offer_url %}
+                <a href="{{result.offer_url}}" class="btn btn-primary">Wyświetl</a>
+                {% comment %} <a href="{% url 'single_offer' service=result.service url_path=result.offer_url_path|urlencode:"" %}" class="btn btn-primary">Wyświetl</a> {% endcomment %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endif %}

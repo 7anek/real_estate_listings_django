@@ -1,0 +1,8 @@
+{% extends 'properties/main-theme.html' %}
+
+{% block body %}
+<p>Title: {{ offer.title }}</p>
+<p>Price: {{ offer.price }}</p>
+<p>Price per square meter{{ offer.price_per_square_meter }}</p>
+<p>Localization: {{ offer.localization }}</p>
+{% endblock %}

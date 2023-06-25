@@ -1,0 +1,22 @@
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+pip install django-cors-headers
+python manage.py startapp properties_api
+pip install scrapy
+pip install scrapyd
+pip install python-scrapyd-api
+python manage.py startapp properties_scrapy
+cd properties_scrapy/
+scrapy startproject scrapy_project
+cd ..
+python manage.py startapp accounts
+pip install python-dotenv
+pip install beautifulsoup4
+pip install chompjs
+pip install scrapy-djangoitem
+pip install selenium
+pip install django-crispy-forms
+pip install crispy-bootstrap4
+pip install django-storages
+pip install boto3
+pip install psycopg2
