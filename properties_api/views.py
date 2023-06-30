@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets, status
+from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -20,10 +21,17 @@ from properties_scrapy.scrapyd_api import scrapyd
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
+
 # Create your views here.
+
+class PropertyListAPIView(ListAPIView):
+    queryset = Property.objects.all()
+    serializer_class = PropertySerializer
+
 class PropertyViewSet(viewsets.ModelViewSet):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
+    permission_classes = [AllowAny]
 
 
 class PropertiesScrape(APIView):
@@ -88,7 +96,8 @@ class PropertiesScrape(APIView):
         uuids - lista uuids
         return False - jeśli jest jakiś spider który jeszcze się nieskończył wykonywać"""
         return not any(
-            scrapyd.job_status(project=settings.SCRAPYD_PROJECT, job_id=job_id) in ['running', 'pending'] for job_id in uuids)
+            scrapyd.job_status(project=settings.SCRAPYD_PROJECT, job_id=job_id) in ['running', 'pending'] for job_id in
+            uuids)
 
 
 class SignUp(APIView):
