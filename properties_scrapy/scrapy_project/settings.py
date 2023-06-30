@@ -15,6 +15,7 @@ import socket
 # load_dotenv('/home/janek/PycharmProjects/property_scraper_api/.env')
 
 # sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".."))
+
 sys.path.append('../')
 
 # sys.path.append(os.path.dirname(os.path.abspath('.')))
@@ -24,12 +25,17 @@ sys.path.append('../')
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # sys.path.append(os.path.join(BASE_DIR, "real_estate_listings"))
+# SCRAPY_PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# DJANGO_PROJECT_DIR = os.path.join(SCRAPY_PROJECT_DIR, "..")
+# sys.path.insert(0, DJANGO_PROJECT_DIR)
+
 ipaddress = socket.gethostbyname(socket.gethostname())
 if ipaddress == '127.0.1.1' or ipaddress == '192.168.0.46':
     DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.local'
 else:
     DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.production'
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'real_estate_listings.settings')
+
 os.environ['DJANGO_SETTINGS_MODULE'] = DJANGO_SETTINGS_MODULE
 application = get_wsgi_application()  # musi być po ustawieniu DJANGO_SETTINGS_MODULE
 

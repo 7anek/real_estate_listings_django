@@ -17,7 +17,8 @@ import json, uuid
 from properties_scrapy.scrapy_factory import ScrapydSpiderFactory
 from properties_scrapy.utils import is_scrapyd_running
 from properties_scrapy.scrapyd_api import scrapyd
-
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 # Create your views here.
 class PropertyViewSet(viewsets.ModelViewSet):
@@ -30,6 +31,7 @@ class PropertiesScrape(APIView):
     serializer_class = PropertySerializer
     permission_classes = [AllowAny]
 
+    # @csrf_exempt
     def post(self, request):
         search_form = SearchForm(request.POST)
 
@@ -86,7 +88,7 @@ class PropertiesScrape(APIView):
         uuids - lista uuids
         return False - jeśli jest jakiś spider który jeszcze się nieskończył wykonywać"""
         return not any(
-            scrapyd.job_status(project='scraper', job_id=job_id) in ['running', 'pending'] for job_id in uuids)
+            scrapyd.job_status(project=settings.SCRAPYD_PROJECT, job_id=job_id) in ['running', 'pending'] for job_id in uuids)
 
 
 class SignUp(APIView):
