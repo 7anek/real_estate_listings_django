@@ -31,13 +31,13 @@ class PropertyListAPIView(ListAPIView):
 class PropertyViewSet(viewsets.ModelViewSet):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
 
 
 class PropertiesScrape(APIView):
     # scrapyd = ScrapydAPI('http://localhost:6800')
     serializer_class = PropertySerializer
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
 
     # @csrf_exempt
     def post(self, request):

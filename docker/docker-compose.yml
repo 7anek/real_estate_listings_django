@@ -1,0 +1,46 @@
+version: '3'
+services:
+  django:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+      - "6800:6800"
+    depends_on:
+      - db
+    networks:
+      - backend
+    network_mode: bridge
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - django
+    networks:
+      - backend
+  db:
+    image: postgis/postgis:14-3.3
+    environment:
+      POSTGRES_DB: ${PG_LOCAL_DBNAME}
+      POSTGRES_USER: ${PG_LOCAL_USER}
+      POSTGRES_PASSWORD: ${PG_LOCAL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - backend
+  selenium:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+    networks:
+      - backend
+volumes:
+  db_data:
+networks:
+  backend:

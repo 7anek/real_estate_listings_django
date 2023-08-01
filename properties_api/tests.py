@@ -110,8 +110,10 @@ class PropertiesSearchViewTestCase(TestCase):
         self.user = User.objects.create_user(username='testuser', password='testpass')
         self.token = AccessToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
+
     def tearDown(self):
         settings.DEBUG = self.old_debug
+
     # @patch('properties.search_results.SearchResults')
     # @patch('properties.search_results.SearchResults')
     # @patch('properties_api.serializers.SearchResultsSerializer')
@@ -173,48 +175,48 @@ class PropertiesSearchViewTestCase(TestCase):
     #             'offer_url': 'http://www.example.com'
     #         }
     #     ])
-    @patch('properties_api.views.SearchResults')
-    @patch('properties_api.serializers.SearchResultsSerializer')
-    def test_properties_search_valid_form(self, mock_serializer, mock_search_results):
-        print('test_properties_search_valid_form')
-        url = reverse('properties_api:properties_search')
-        search_params = {'address': 'Grodzisk Mazowiecki, Polska', 'province': 'Mazowieckie',
-                         'city': 'Grodzisk Mazowiecki', 'price_min': 300000, 'price_max': 400000,
-                         'property_type': 'flat', 'offer_type': 'sell'}
-
-        mock_search_results.return_value.objects.return_value = [
-            {
-                'title': 'Existing Property',
-                'price': 200000,
-                'area': 1000,
-                'service': 'test_service',
-                'offer_url': 'http://www.example.com'
-            }
-        ]
-        mock_serializer.return_value.data = [
-            {
-                'title': 'Existing Property',
-                'price': 200000,
-                'area': 1000,
-                'service': 'test_service',
-                'offer_url': 'http://www.example.com'
-            }
-        ]
-
-        response = self.client.get(url, search_params)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # print('----------------response.data',response.data)
-        # self.assertEqual(len(response.data['objects']), 1)
-        # self.assertEqual(response.data, [
-        #     {
-        #         'title': 'Existing Property',
-        #         'price': 200000,
-        #         'area': 1000,
-        #         'service': 'test_service',
-        #         'offer_url': 'http://www.example.com'
-        #     }
-        # ])
+    # @patch('properties_api.views.SearchResults')
+    # @patch('properties_api.serializers.SearchResultsSerializer')
+    # def test_properties_search_valid_form(self, mock_serializer, mock_search_results):
+    #     print('test_properties_search_valid_form')
+    #     url = reverse('properties_api:properties_search')
+    #     search_params = {'address': 'Grodzisk Mazowiecki, Polska', 'province': 'Mazowieckie',
+    #                      'city': 'Grodzisk Mazowiecki', 'price_min': 300000, 'price_max': 400000,
+    #                      'property_type': 'flat', 'offer_type': 'sell'}
+    #
+    #     mock_search_results.return_value.objects.return_value = [
+    #         {
+    #             'title': 'Existing Property',
+    #             'price': 200000,
+    #             'area': 1000,
+    #             'service': 'test_service',
+    #             'offer_url': 'http://www.example.com'
+    #         }
+    #     ]
+    #     mock_serializer.return_value.data = [
+    #         {
+    #             'title': 'Existing Property',
+    #             'price': 200000,
+    #             'area': 1000,
+    #             'service': 'test_service',
+    #             'offer_url': 'http://www.example.com'
+    #         }
+    #     ]
+    #
+    #     response = self.client.get(url, search_params)
+    #
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #     # print('----------------response.data',response.data)
+    #     # self.assertEqual(len(response.data['objects']), 1)
+    #     # self.assertEqual(response.data, [
+    #     #     {
+    #     #         'title': 'Existing Property',
+    #     #         'price': 200000,
+    #     #         'area': 1000,
+    #     #         'service': 'test_service',
+    #     #         'offer_url': 'http://www.example.com'
+    #     #     }
+    #     # ])
 
     # @patch('properties.search_results.SearchResults')
     # @patch.object(SearchResults, "__init__", lambda *args: None)
@@ -228,6 +230,7 @@ class PropertiesSearchViewTestCase(TestCase):
     #     self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
     #     self.assertEqual(response.data, "invalid form")
 
+
 class PropertiesScrapePostTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -235,44 +238,44 @@ class PropertiesScrapePostTestCase(TestCase):
         self.token = AccessToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
         self.search_form_data = {'address': 'Grodzisk Mazowiecki, Polska', 'province': 'Mazowieckie',
-                            'city': 'Grodzisk Mazowiecki', 'price_min': 300000, 'price_max': 400000,
-                            'property_type': 'flat', 'offer_type': 'sell'}
+                                 'city': 'Grodzisk Mazowiecki', 'price_min': 300000, 'price_max': 400000,
+                                 'property_type': 'flat', 'offer_type': 'sell'}
 
         property_data = {"title": "aaa", "price": 234, "area": 245, "service_name": "blabla",
-                             "service_url": "http://www.example.com", 'scrapyd_job_id':'75d6b108cc9811edba0300155d7be260'}
+                         "service_url": "http://www.example.com", 'scrapyd_job_id': '75d6b108cc9811edba0300155d7be260'}
         Property.objects.create(**property_data)
         Property.objects.create(title="bbb", price=643, area=234, service_name="uuuuu",
                                 service_url="http://www.example.com", scrapyd_job_id='75d6b108cc9811edba0300155d7be260')
 
     # @patch.object(SearchForm, 'is_valid', return_value=False)
-    # def test_properties_scrape_post_invalid_form(self):
-    #     print('test_properties_scrape_invalid_form')
+    # def test_scrape_post_invalid_form(self):
+    #     print('test_scrape_invalid_form')
     #     invalid_search_form_data={'key1': 'val1', 'key2': 'val2'}
-    #     url = reverse('properties_api:properties_scrape')
+    #     url = reverse('properties_api:scrape')
     #     response = self.client.post(url, invalid_search_form_data)
     #     self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
     #     self.assertEqual(response.data, 'invalid form')
 
     # @patch.object(SearchForm, 'is_valid', return_value=True)
-    # @patch('scraper.utils.is_scrapyd_running', return_value=False)
-    # @patch('scraper.utils.is_scrapyd_running', side_effect=lambda: False)
+    # @patch('properties_scrapy.utils.is_scrapyd_running', return_value=False)
+    # @patch('properties_scrapy.utils.is_scrapyd_running', side_effect=lambda: False)
     # @patch(is_scrapyd_running, return_value=False)
-    def test_properties_scrape_post_scrapyd_unavailable(self):
-        print('test_properties_scrape_scrapyd_unavailable')
+    def test_scrape_post_scrapyd_unavailable(self):
+        print('test_scrape_scrapyd_unavailable')
         with patch('properties_api.views.is_scrapyd_running', return_value=False):
-            url = reverse('properties_api:properties_scrape')
+            url = reverse('properties_api:scrape')
             response = self.client.post(url, self.search_form_data)
             self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
             self.assertEqual(response.data, 'Scrapyd unavailable')
 
-    @patch('scraper.utils.is_scrapyd_running', return_value=True)
+    @patch('properties_scrapy.utils.is_scrapyd_running', return_value=True)
     @patch.object(ScrapydSpiderFactory, 'job_ids', ['75d6b108cc9811edba0300155d7be260'])
     @patch.object(ScrapydSpiderFactory, 'check_finished', return_value=True)
     @patch.object(ScrapydSpiderFactory, 'create_spiders')
     @patch.object(ScrapydSpiderFactory, '__init__', return_value=None)
-    def test_properties_scrape_post_successful(self, mock_init_spiders, mock_create_spiders, mock_check_finished, mock_is_scrapyd_running):
-
-        url = reverse('properties_api:properties_scrape')
+    def test_scrape_post_successful(self, mock_init_spiders, mock_create_spiders, mock_check_finished,
+                                               mock_is_scrapyd_running):
+        url = reverse('properties_api:scrape')
         # search_form_data = {'address': 'Grodzisk Mazowiecki, Polska', 'province': 'Mazowieckie',
         #                  'city': 'Grodzisk Mazowiecki', 'price_min': 300000, 'price_max': 400000,
         #                  'property_type': 'flat', 'offer_type': 'sell'}
@@ -289,16 +292,16 @@ class PropertiesScrapePostTestCase(TestCase):
         # mock_is_scrapyd_running.assert_called_once_with()
         # mock_create_spiders.assert_called_once_with()
         self.assertEqual(response.data['job_ids'], ['75d6b108cc9811edba0300155d7be260'])
-        self.assertEqual(len(response.data['properties']),2)
+        self.assertEqual(len(response.data['properties']), 2)
 
     # Test when check_finished() returns True
     # @patch.object(SearchForm, 'is_valid', return_value=True)
-    # @patch('scraper.utils.is_scrapyd_running', return_value=True)
+    # @patch('properties_scrapy.utils.is_scrapyd_running', return_value=True)
     # @patch.object(ScrapydSpiderFactory, 'check_finished', return_value=True)
     # @patch.object(Property.objects, 'filter')
-    # def test_properties_scrape_check_finished_true(self, mock_filter, mock_check_finished, mock_is_scrapyd_running,
+    # def test_scrape_check_finished_true(self, mock_filter, mock_check_finished, mock_is_scrapyd_running,
     #                                                mock_is_valid):
-    #     url = reverse('properties_api:properties_scrape')
+    #     url = reverse('properties_api:scrape')
     #     search_form_data = {'param1': 'value1', 'param2': 'value2'}
     #     search_form = SearchForm(data=search_form_data)
     #
@@ -307,6 +310,8 @@ class PropertiesScrapePostTestCase(TestCase):
     #     with patch('uuid.UUID') as mock_uuid:
     #         mock_uuid.
     #         return
+
+
 class PropertiesGetScrapeViewTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -329,12 +334,12 @@ class PropertiesGetScrapeViewTestCase(TestCase):
             # owner=self.user
         )
 
-    def test_properties_get_scrape_all_finished(self):
+    def test_get_scrape_all_finished(self):
         scrape_job_ids = ["75d6b108cc9811edba0300155d7be260"]
-        url = reverse('properties_api:properties_get_scrape', args=[','.join(scrape_job_ids)])
+        url = reverse('properties_api:get_scrape', args=[','.join(scrape_job_ids)])
 
         # Mocking ScrapydSpiderFactory methods
-        with patch('scraper.scrapy_factory.ScrapydSpiderFactory') as mock_factory:
+        with patch('properties_scrapy.scrapy_factory.ScrapydSpiderFactory') as mock_factory:
             mock_instance = mock_factory.return_value
             mock_instance.check_finished.return_value = True
             mock_instance.create_spiders.return_value = None
@@ -347,13 +352,13 @@ class PropertiesGetScrapeViewTestCase(TestCase):
             # Add your assertions for the scraped properties
 
     @patch('properties_api.views.PropertiesScrape.check_finished', return_value=False)
-    def test_properties_get_scrape_not_all_finished(self, mock_check_finished):
-        print('test_properties_get_scrape_not_all_finished')
+    def test_get_scrape_not_all_finished(self, mock_check_finished):
+        print('test_get_scrape_not_all_finished')
         scrape_job_ids = ["75d6b108cc9811edba0300155d7be260"]
-        url = reverse('properties_api:properties_get_scrape', args=[','.join(scrape_job_ids)])
+        url = reverse('properties_api:get_scrape', args=[','.join(scrape_job_ids)])
 
         # Mocking ScrapydSpiderFactory methods
-        with patch('scraper.scrapy_factory.ScrapydSpiderFactory') as mock_factory:
+        with patch('properties_scrapy.scrapy_factory.ScrapydSpiderFactory') as mock_factory:
             mock_instance = mock_factory.return_value
             # mock_instance.check_finished.side_effect = [False, True]  # The first job ID is not finished, the second one is finished
             mock_instance.check_finished.return_value = False
@@ -365,23 +370,22 @@ class PropertiesGetScrapeViewTestCase(TestCase):
             self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
             self.assertEqual(response.data, 'Spiders are processing')
 
-    # @patch('scraper.utils.is_scrapyd_running')
+    # @patch('properties_scrapy.utils.is_scrapyd_running')
     @patch('properties_api.views.is_scrapyd_running', return_value=False)
-    @patch('scraper.scrapy_factory.ScrapydSpiderFactory')
-    def test_properties_get_scrape_scrapyd_not_running(self, mock_factory, mock_is_scrapyd_running):
-
+    @patch('properties_scrapy.scrapy_factory.ScrapydSpiderFactory')
+    def test_get_scrape_scrapyd_not_running(self, mock_factory, mock_is_scrapyd_running):
         self.client = APIClient()
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
         scrape_job_ids = ["75d6b108cc9811edba0300155d7be260"]
-        url = reverse('properties_api:properties_get_scrape', args=[','.join(scrape_job_ids)])
+        url = reverse('properties_api:get_scrape', args=[','.join(scrape_job_ids)])
 
         # Mocking ScrapydSpiderFactory methods
-        # with patch('scraper.scrapy_factory.ScrapydSpiderFactory') as mock_factory:
+        # with patch('properties_scrapy.scrapy_factory.ScrapydSpiderFactory') as mock_factory:
         mock_instance = mock_factory.return_value
         mock_instance.is_scrapyd_running.return_value = False
         mock_instance.create_spiders.return_value = None
         mock_instance.get_properties.return_value = []
-        mock_is_scrapyd_running.return_value=False
+        mock_is_scrapyd_running.return_value = False
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -400,7 +404,8 @@ class SignUpTestCase(APITestCase):
     #     self.assertEqual(response.data, 'User creation error')
 
     def test_signup_success(self):
-        response = self.client.post('/signup/', {'username': 'john', 'password': 'password', 'email': 'valid@example.com'})
+        response = self.client.post('/signup/',
+                                    {'username': 'john', 'password': 'password', 'email': 'valid@example.com'})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data, 'User created')
 
@@ -433,7 +438,7 @@ class JWTokenTestCase(APITestCase):
         print('test_token_refresh_success')
         token = RefreshToken.for_user(self.user)
         response = self.client.post('/signin/refresh/', {'refresh': str(token)})
-        print('response',response)
+        print('response', response)
         self.assertEqual(response.status_code, 200)
         self.assertIn('access', response.data)
         self.assertNotEqual(token.access_token, response.data['access'])

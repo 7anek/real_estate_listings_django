@@ -8,9 +8,12 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
-
+import socket
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'real_estate_listings.settings')
+ipaddress = socket.gethostbyname(socket.gethostname())
+local = ipaddress == '127.0.1.1' or ipaddress == '192.168.0.46'
+settings_path = 'real_estate_listings.settings.local' if local else 'real_estate_listings.settings.production'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_path)
 
 application = get_wsgi_application()

@@ -6,7 +6,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 import requests
 from django.conf import settings
-
+import logging
+logger = logging.getLogger(__name__)
 
 def localization_fields_from_search_form(item, search_form):
     item["address"] = search_form["address"] if "address" in search_form else None
@@ -32,6 +33,7 @@ def selenium_browser(headless=True):
 def is_scrapyd_running():
     """scrapyd: obiekt scrapyd_api.ScrapydAPI('host:port')"""
     scrapyd_url = settings.SCRAPYD_URL
+    logger.debug(f'333333scrapyd url: {scrapyd_url}')
     try:
         response = requests.get(f'{scrapyd_url}/daemonstatus.json')
         if response.status_code == 200:

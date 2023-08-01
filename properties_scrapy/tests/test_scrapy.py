@@ -1,6 +1,7 @@
-from unittest import TestCase
+# from unittest import TestCase
+from django.test import TestCase
 from unittest.mock import patch
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 from django.core.exceptions import ImproperlyConfigured
 from requests import Response
 from properties_scrapy.models import Property
@@ -12,7 +13,9 @@ from properties_scrapy.utils import *
 
 
 class MyPipelineTestCase(TestCase):
-    def test_property_creation(self):
+
+
+    async def test_property_creation(self):
         # Tworzenie obiektu Property w teście
         item = ScrapyItem()
         item["scrapyd_job_id"] = "75d6b108cc9811edba0300155d7be261"
@@ -23,10 +26,16 @@ class MyPipelineTestCase(TestCase):
         ] = "https://www.otodom.pl/pl/oferta/piekne-mieszkanie-32-5m2-bielany-garaz-podziemny-ID4l33t.html"
         item["title"] = "Fajny tytuł"
         item["price"] = 100.000
-        item["location"] = "Grodzisk Mazowiecki, Grodziski, Mazowieckie"
-        item[
-            "description"
-        ] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada massa non euismod condimentum. Fusce et tincidunt lorem, a faucibus libero. Duis sed leo a massa tempus porta. Etiam consectetur eros nec metus volutpat tincidunt. Suspendisse imperdiet sit amet dui nec tempor. Curabitur id ligula cursus, pretium leo et, lobortis arcu. Suspendisse varius ante non enim dictum, eu molestie mi ultrices. Maecenas urna nisl, consectetur sit amet facilisis eget, vulputate et sapien. Maecenas at lorem faucibus, facilisis est et, ultrices ante. Donec condimentum condimentum urna, sit amet dignissim diam lobortis sollicitudin. Duis accumsan facilisis rhoncus."
+        item["address"] = "Grodzisk Mazowiecki, Grodziski, Mazowieckie"
+        item["description"] = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada massa non "
+                               "euismod condimentum. Fusce et tincidunt lorem, a faucibus libero. Duis sed leo a "
+                               "massa tempus porta. Etiam consectetur eros nec metus volutpat tincidunt. Suspendisse "
+                               "imperdiet sit amet dui nec tempor. Curabitur id ligula cursus, pretium leo et, "
+                               "lobortis arcu. Suspendisse varius ante non enim dictum, eu molestie mi ultrices. "
+                               "Maecenas urna nisl, consectetur sit amet facilisis eget, vulputate et sapien. "
+                               "Maecenas at lorem faucibus, facilisis est et, ultrices ante. Donec condimentum "
+                               "condimentum urna, sit amet dignissim diam lobortis sollicitudin. Duis accumsan "
+                               "facilisis rhoncus.")
         item["area"] = 100
         item["floor"] = 1
         item["number_of_rooms"] = 1
@@ -38,10 +47,12 @@ class MyPipelineTestCase(TestCase):
         pipeline = PropertiesScrapyPipeline()
         # pipeline.open_spider(None)
 
-        pipeline.process_item(item, None)
+        await pipeline.process_item(item, None)
 
         # Sprawdzenie czy obiekt Property został utworzony w testowej bazie danych
-        property_count = Property.objects.count()
+        # property_count = Property.objects.count()
+        property_count = await sync_to_async(Property.objects.count)()
+        # print(Property.objects.all())
         self.assertEqual(property_count, 1)
 
         # Pozostałe asercje i testy
@@ -64,7 +75,7 @@ class ScraperPipelineTestCase(TestCase):
         ] = "https://www.otodom.pl/pl/oferta/piekne-mieszkanie-32-5m2-bielany-garaz-podziemny-ID4l33t.html"
         item["title"] = "Fajny tytuł"
         item["price"] = 100.000
-        item["location"] = "Grodzisk Mazowiecki, Grodziski, Mazowieckie"
+        item["address"] = "Grodzisk Mazowiecki, Grodziski, Mazowieckie"
         item[
             "description"
         ] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada massa non euismod condimentum. Fusce et tincidunt lorem, a faucibus libero. Duis sed leo a massa tempus porta. Etiam consectetur eros nec metus volutpat tincidunt. Suspendisse imperdiet sit amet dui nec tempor. Curabitur id ligula cursus, pretium leo et, lobortis arcu. Suspendisse varius ante non enim dictum, eu molestie mi ultrices. Maecenas urna nisl, consectetur sit amet facilisis eget, vulputate et sapien. Maecenas at lorem faucibus, facilisis est et, ultrices ante. Donec condimentum condimentum urna, sit amet dignissim diam lobortis sollicitudin. Duis accumsan facilisis rhoncus."
@@ -87,7 +98,7 @@ class ScraperPipelineTestCase(TestCase):
         # obj = Model.objects.filter(id=1).first()
 
         self.assertNotEqual(existing_object, None)
-        self.assertEqual(existing_object.service_id, 64121979)
+        self.assertEqual(existing_object.service_id, '64121979')
         self.assertEqual(existing_object.service_name, "otodom")
 
     # TODO - dodać test na duplikaty

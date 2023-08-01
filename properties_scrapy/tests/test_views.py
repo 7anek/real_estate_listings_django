@@ -7,19 +7,26 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from django.contrib.auth.models import User
-
+import logging
+logger = logging.getLogger(__name__)
 
 class ScrapeSeleniumTestCase(LiveServerTestCase):
+    host='django'
     def setUp(self):
         self.old_debug = settings.DEBUG
         settings.DEBUG = True
-
+        # self.live_server_url="http://django:8000"
+        logger.debug(self.live_server_url)
         self.user = User.objects.create_user("testuser", password="password")
 
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        webdriver_service = Service('chromedriver')
-        self.driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+        # webdriver_service = Service('chromedriver')
+        webdriver_service = Service('static/properties_scrapy/chrome-linux64/chrome')
+        # self.driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+        self.driver = webdriver.Remote("http://selenium:4444/wd/hub", options=chrome_options)
+        # self.driver = webdriver.Remote("http://localhost:4444/wd/hub", options=chrome_options)
+
         self.driver.set_window_size(1280, 1024)
         # self.driver = webdriver.Chrome('chromedriver')
 
@@ -41,6 +48,7 @@ class ScrapeSeleniumTestCase(LiveServerTestCase):
 
     def test_login(self):
         self.driver.get(self.live_server_url + '/scrapy/crawl/')
+        # self.driver.get('http://django:8000/scrapy/crawl/')
 
         username_input = self.driver.find_element(By.NAME, 'username')
         password_input = self.driver.find_element(By.NAME, 'password')
@@ -52,7 +60,7 @@ class ScrapeSeleniumTestCase(LiveServerTestCase):
 
         # Zaloguj się
         submit_button.click()
-
+        print('Users: ',User.objects.all())
         # Sprawdź, czy użytkownik jest zalogowany i przekierowany na inną stronę
         self.assertEqual(self.driver.current_url, self.live_server_url + '/scrapy/crawl/')
 

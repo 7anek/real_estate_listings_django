@@ -8,8 +8,8 @@ from django.contrib.gis.geos import Point
 # Create your models here.
 class Property(models.Model):
 
-    class Meta:
-        app_label = "properties"
+    # class Meta:
+    #     app_label = "properties"
 
     class TypesOfOffer(models.TextChoices):
         SELL = 'sell', 'Sprzedaż'

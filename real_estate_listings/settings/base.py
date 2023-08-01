@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import sys
+import logging
 from corsheaders.defaults import default_headers
 # sys.path.append('scraper')
 from datetime import timedelta
@@ -119,45 +120,47 @@ WSGI_APPLICATION = 'real_estate_listings.wsgi.application'
 # }
 
 # tak działa:
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('PG_DBNAME'),
-        'USER': os.environ.get('PG_USER'),
-        'PASSWORD': os.environ.get('PG_PASSWORD'),
-        'HOST': os.environ.get('PG_HOST'),
-        'PORT': os.environ.get('PG_PORT'),
-        # 'TEST': {
-        #     'MIRROR': 'test'
-        #     # 'NAME': os.environ.get('PG_TEST_DBNAME'),
-        # }
-    },
-    # 'test': {
-    #     # 'ENGINE': 'django.contrib.gis.db.backends.postgis',
-    #     # # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     # 'NAME': os.environ.get('PG_TEST_DBNAME'),
-    #     # 'USER': os.environ.get('PG_TEST_USER'),
-    #     # 'PASSWORD': os.environ.get('PG_TEST_PASSWORD'),
-    #     # 'HOST': os.environ.get('PG_TEST_HOST'),
-    #     # 'PORT': os.environ.get('PG_TEST_PORT'),
-    #     # 'TEST': {
-    #     #     'NAME': os.environ.get('PG_TEST_DBNAME'),  # Użyj istniejącej bazy danych testowej
-    #     # },
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': 'only4test.sqlite'
-    # }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get('PG_DBNAME'),
+#         'USER': os.environ.get('PG_USER'),
+#         'PASSWORD': os.environ.get('PG_PASSWORD'),
+#         'HOST': os.environ.get('PG_HOST'),
+#         'PORT': os.environ.get('PG_PORT'),
+#         # 'TEST': {
+#         #     'MIRROR': 'test'
+#         #     # 'NAME': os.environ.get('PG_TEST_DBNAME'),
+#         # }
+#     },
+#     # 'test': {
+#     #     # 'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#     #     # # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     #     # 'NAME': os.environ.get('PG_TEST_DBNAME'),
+#     #     # 'USER': os.environ.get('PG_TEST_USER'),
+#     #     # 'PASSWORD': os.environ.get('PG_TEST_PASSWORD'),
+#     #     # 'HOST': os.environ.get('PG_TEST_HOST'),
+#     #     # 'PORT': os.environ.get('PG_TEST_PORT'),
+#     #     # 'TEST': {
+#     #     #     'NAME': os.environ.get('PG_TEST_DBNAME'),  # Użyj istniejącej bazy danych testowej
+#     #     # },
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': 'only4test.sqlite'
+#     # }
+# }
 
-if TESTING:
-    DATABASES['default'] = {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.environ.get('PG_LOCAL_DBNAME'),
-        'USER': os.environ.get('PG_LOCAL_USER'),
-        'PASSWORD': os.environ.get('PG_LOCAL_PASSWORD'),
-        'HOST': os.environ.get('PG_LOCAL_HOST'),
-        'PORT': os.environ.get('PG_LOCAL_PORT'),
+# if TESTING:
+DATABASES={
+    'default': {
+    'ENGINE': 'django.contrib.gis.db.backends.postgis',
+    'NAME': os.environ.get('PG_LOCAL_DBNAME'),
+    'USER': os.environ.get('PG_LOCAL_USER'),
+    'PASSWORD': os.environ.get('PG_LOCAL_PASSWORD'),
+    'HOST': os.environ.get('PG_LOCAL_HOST'),
+    'PORT': os.environ.get('PG_LOCAL_PORT'),
     }
+}
 
 # AUTH_USER_MODEL = 'your_app_name.User'
 
@@ -179,38 +182,40 @@ USE_TZ = True
 # STATIC_URL = 'static/'
 # # STATIC_ROOT = "/home/janek/PycharmProjects/property_scraper_api/properties/static/"
 # STATIC_ROOT = f"{BASE_DIR}/properties/static/"
-STATIC_ROOT = f"{BASE_DIR}/properties/static/"
+# STATIC_ROOT = f"{BASE_DIR}/static/"
+STATIC_ROOT = '/app/static/'
+STATIC_URL="static/"
 
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-# AWS_DEFAULT_ACL = 'public-read'
-AWS_DEFAULT_ACL = None
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-north-1.amazonaws.com'
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', 'ACL': 'public-read'}
-
-# s3 static settings
-# AWS_LOCATION = 'static'
-AWS_LOCATION = ''
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+# # AWS_DEFAULT_ACL = 'public-read'
+# AWS_DEFAULT_ACL = None
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-north-1.amazonaws.com'
+# # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# # AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', 'ACL': 'public-read'}
+#
+# # s3 static settings
+# # AWS_LOCATION = 'static'
+# AWS_LOCATION = ''
+# # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-SCRAPEOPS_API_KEY = os.getenv('SCRAPEOPS_API_KEY')
-EXTENSIONS = {
-    'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
-}
-DOWNLOADER_MIDDLEWARES = {
-    'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-}
+# SCRAPEOPS_API_KEY = os.getenv('SCRAPEOPS_API_KEY')
+# EXTENSIONS = {
+#     'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
+# }
+# DOWNLOADER_MIDDLEWARES = {
+#     'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+#     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+# }
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -250,3 +255,33 @@ REST_FRAMEWORK = {
 # }
 
 LOGIN_REDIRECT_URL = "home"
+
+# Konfiguracja loggera
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+# Utworzenie obsługi logowania do pliku
+file_handler = logging.FileHandler('django.log')
+file_handler.setLevel(logging.DEBUG)
+
+# Dodanie obsługi logowania do loggera
+logger.addHandler(file_handler)
+
+# Ustawienie loggera Django na zdefiniowany logger
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+    },
+}
+
+# LIVE_SERVER_PORT = 8000

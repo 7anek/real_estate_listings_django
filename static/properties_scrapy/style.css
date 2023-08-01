@@ -1,0 +1,9 @@
+a{
+    display: block;
+}
+
+img.list-item{
+    height: 200px;
+    object-fit: cover;
+}
+

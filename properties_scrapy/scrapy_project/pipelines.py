@@ -16,8 +16,8 @@ class PropertiesScrapyPipeline:
     def process_item(self, item, spider):
         print('|||||||||||||||||||| ScraperPipeline process_item')
         print('ScraperPipeline Property.objects.all().count()', Property.objects.all().count())
-        p = Property.objects.create(service_name='b', service_url='b', price=1, area=1, property_type='b')
-        print('ScraperPipeline Property.objects.all().count()', Property.objects.all().count())
+        # p = Property.objects.create(service_name='b', service_url='b', price=1, area=1, property_type='b')
+        # print('ScraperPipeline Property.objects.all().count()', Property.objects.all().count())
 
         if item["service_id"]:
             existing_objects = Property.objects.filter(

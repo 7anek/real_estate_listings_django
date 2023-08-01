@@ -28,7 +28,8 @@ class ScrapydSpiderFactory:
         if settings.TESTING:
             spider_args['is_testing'] = settings.TESTING
         print('schedule_spider spider_args', spider_args)
-        return self.scrapyd.schedule(self.project_name, spider_name, **spider_args)
+        url = 'http://127.0.0.1:6800/schedule.json'
+        return self.scrapyd.schedule(self.project_name, spider_name, url=url, **spider_args)
 
     def check_finished(self):
         return not any(

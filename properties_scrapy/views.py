@@ -24,6 +24,7 @@ def crawl(request):
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
         if is_scrapyd_running():
+        # if True:
             # settings = get_project_settings()
             # print('////////////',settings)
             if search_form.is_valid():

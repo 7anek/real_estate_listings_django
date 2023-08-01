@@ -69,7 +69,7 @@ class SearchForm(forms.Form):
 
     class Media:
         # js = (settings.STATIC_URL+'properties/google-maps-places.js', settings.STATIC_URL+'properties/search-form.js')
-        js = (settings.STATIC_URL+'properties/search-form.js',)
+        js = (settings.STATIC_URL+'properties_scrapy/search-form.js',)
         # js = (f"https://maps.google.com/maps/api/js?key={settings.GOOGLE_MAPS_API_KEY}&libraries=places", settings.STATIC_URL+'properties/search-form.js')
         # https://maps.google.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places"
 

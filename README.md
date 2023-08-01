@@ -1,8 +1,19 @@
-# property_scraper_api
+[//]: <> (Komentarz)
+[//]: <> (Tytuł zaczyna się od '# Title', poddytyły mają więcej znaków '## Podtytuł')
+[//]: <> (pogrubienie: '**pogrubiony tekst**')
+[//]: <> (escape special characters: \#)
+[//]: <> (Kod: trzy razy tylda + nazwa języka, enter kod, enter trzy razy tylda '``` python')
+[//]: <> (dodawanie obrazków: '![Image Caption](path/to/image)
+# real estate listings api
 
-scrapping property advertisements websites using scrapy framework.
+scrapping real estate advertisements websites using scrapy framework.  
 sharing the results through api in django rest framework.
-searching property advertisements websites using requests and selenium python library.
+
+### list of scrapping websites
+
+selection made according to the popularity of the sites - the number of visits to the sites
+
+
 
 wymagania - baza postgresql
 utworzenie projektu scrapyd
