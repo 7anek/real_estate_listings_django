@@ -153,3 +153,5 @@ GitHub.sublime-settings
 .history
 
 *.sock
+
+static/properties_scrapy/chrome-linux64
