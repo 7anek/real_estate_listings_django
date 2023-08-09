@@ -26,8 +26,15 @@ def selenium_browser(headless=True):
     if headless:
         chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     # return webdriver.Chrome("/home/janek/python/property_scraper/chromedriver", options=chrome_options)
-    return webdriver.Chrome("chromedriver", options=chrome_options)
+    #return webdriver.Chrome("chromedriver", options=chrome_options)
+
+
+    # webdriver_service = Service('static/properties_scrapy/chrome-linux64/chrome')
+    # self.driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+    return webdriver.Remote("http://selenium:4444/wd/hub", options=chrome_options)
 
 
 def is_scrapyd_running():

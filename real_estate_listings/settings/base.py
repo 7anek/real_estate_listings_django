@@ -36,8 +36,9 @@ TESTING = 'test' in sys.argv
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
-SCRAPYD_URL = os.environ.get('SCRAPYD_URL')
-SCRAPYD_PROJECT = os.environ.get('SCRAPYD_PROJECT')
+# SCRAPYD_URL = "http://django:6800"
+SCRAPYD_URL = "http://localhost:6800"
+SCRAPYD_PROJECT = "default"
 
 # Application definition
 
@@ -119,46 +120,14 @@ WSGI_APPLICATION = 'real_estate_listings.wsgi.application'
 #     }
 # }
 
-# tak działa:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ.get('PG_DBNAME'),
-#         'USER': os.environ.get('PG_USER'),
-#         'PASSWORD': os.environ.get('PG_PASSWORD'),
-#         'HOST': os.environ.get('PG_HOST'),
-#         'PORT': os.environ.get('PG_PORT'),
-#         # 'TEST': {
-#         #     'MIRROR': 'test'
-#         #     # 'NAME': os.environ.get('PG_TEST_DBNAME'),
-#         # }
-#     },
-#     # 'test': {
-#     #     # 'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#     #     # # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#     #     # 'NAME': os.environ.get('PG_TEST_DBNAME'),
-#     #     # 'USER': os.environ.get('PG_TEST_USER'),
-#     #     # 'PASSWORD': os.environ.get('PG_TEST_PASSWORD'),
-#     #     # 'HOST': os.environ.get('PG_TEST_HOST'),
-#     #     # 'PORT': os.environ.get('PG_TEST_PORT'),
-#     #     # 'TEST': {
-#     #     #     'NAME': os.environ.get('PG_TEST_DBNAME'),  # Użyj istniejącej bazy danych testowej
-#     #     # },
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': 'only4test.sqlite'
-#     # }
-# }
-
-# if TESTING:
-DATABASES={
+DATABASES = {
     'default': {
-    'ENGINE': 'django.contrib.gis.db.backends.postgis',
-    'NAME': os.environ.get('PG_LOCAL_DBNAME'),
-    'USER': os.environ.get('PG_LOCAL_USER'),
-    'PASSWORD': os.environ.get('PG_LOCAL_PASSWORD'),
-    'HOST': os.environ.get('PG_LOCAL_HOST'),
-    'PORT': os.environ.get('PG_LOCAL_PORT'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.environ.get('PG_DBNAME'),
+        'USER': os.environ.get('PG_USER'),
+        'PASSWORD': os.environ.get('PG_PASSWORD'),
+        'HOST': os.environ.get('PG_HOST'),
+        'PORT': os.environ.get('PG_PORT'),
     }
 }
 
@@ -184,7 +153,7 @@ USE_TZ = True
 # STATIC_ROOT = f"{BASE_DIR}/properties/static/"
 # STATIC_ROOT = f"{BASE_DIR}/static/"
 STATIC_ROOT = '/app/static/'
-STATIC_URL="static/"
+STATIC_URL = "static/"
 
 # AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
@@ -220,7 +189,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # CSRF_TRUSTED_ORIGINS = [
 #     "http://localhost:3000",

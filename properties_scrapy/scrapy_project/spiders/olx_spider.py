@@ -229,7 +229,7 @@ class OlxSpider(Spider):
 
     def get_results_num(self, soup):
         num_results = int(
-            soup.find("div", {"data-testid": "total-count"}).text.split()[-2]
+            soup.find("span", {"data-testid": "total-count"}).text.split()[-2]
         )
         return num_results
 

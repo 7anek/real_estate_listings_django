@@ -16,8 +16,8 @@ class ScrapydSpiderFactory:
 
     def create_spiders(self):
         print('create_spiders')
-        spider_names = ['otodom', 'olx', 'domiporta', 'morizon', 'gratka']
-        # spider_names=['domiporta']
+        # spider_names = ['otodom', 'olx', 'domiporta', 'morizon', 'gratka']
+        spider_names=['olx']
         for spider_name in spider_names:
             job_id = self.schedule_spider(spider_name)
             print('spider_name', spider_name, 'job_id', job_id)
@@ -29,6 +29,7 @@ class ScrapydSpiderFactory:
             spider_args['is_testing'] = settings.TESTING
         print('schedule_spider spider_args', spider_args)
         url = 'http://127.0.0.1:6800/schedule.json'
+        # url = "http://django:6800/schedule.json"
         return self.scrapyd.schedule(self.project_name, spider_name, url=url, **spider_args)
 
     def check_finished(self):

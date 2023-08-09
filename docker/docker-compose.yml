@@ -27,9 +27,9 @@ services:
   db:
     image: postgis/postgis:14-3.3
     environment:
-      POSTGRES_DB: ${PG_LOCAL_DBNAME}
-      POSTGRES_USER: ${PG_LOCAL_USER}
-      POSTGRES_PASSWORD: ${PG_LOCAL_PASSWORD}
+      POSTGRES_DB: ${PG_DBNAME}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
     networks:
