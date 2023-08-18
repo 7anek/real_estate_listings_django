@@ -103,6 +103,8 @@ celerybeat-schedule.*
 
 # Environments 
 .env.stg
+.env.prod
+.env.dev
 .venv 
 env/ 
 venv/ 
