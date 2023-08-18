@@ -1,5 +1,5 @@
 from dotenv import load_dotenv,find_dotenv
-load_dotenv(find_dotenv(".env.dev"))
+load_dotenv(find_dotenv("env/.env.dev"))
 from .base import *
 
 PRODUCTION=False

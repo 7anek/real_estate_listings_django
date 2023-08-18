@@ -1,6 +1,6 @@
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv(".env.prod"))
+load_dotenv(find_dotenv("env/.env.prod"))
 
 from .base import *
 from corsheaders.defaults import default_headers
