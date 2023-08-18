@@ -1,6 +1,0 @@
-FROM postgis/postgis:latest
-VOLUME "/data"
-ENV POSTGRES_USER=janek
-ENV POSTGRES_PASS=Jupameli3
-ENV POSTGRES_DBNAME=properties
-EXPOSE 5432

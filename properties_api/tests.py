@@ -4,7 +4,8 @@ from rest_framework.test import APIRequestFactory, APIClient
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from properties_scrapy.models import Property
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
@@ -22,7 +23,7 @@ class PropertyViewSetTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create_user("testuser", password="password")
+        cls.user = User.objects.create_user("testuser", password="password", is_active=True)
         cls.access_token = str(AccessToken.for_user(cls.user))
         cls.property_data = {"title": "aaa", "price": 234, "area": 245, "service_name": "blabla",
                              "service_url": "http://www.example.com"}
@@ -107,7 +108,7 @@ class PropertiesSearchViewTestCase(TestCase):
         settings.DEBUG = True
 
         self.client = APIClient()
-        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.user = User.objects.create_user(username='testuser', password='testpass', is_active=True)
         self.token = AccessToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
 
@@ -234,7 +235,7 @@ class PropertiesSearchViewTestCase(TestCase):
 class PropertiesScrapePostTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.user = User.objects.create_user(username='testuser', password='testpass', is_active=True)
         self.token = AccessToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
         self.search_form_data = {'address': 'Grodzisk Mazowiecki, Polska', 'province': 'Mazowieckie',
@@ -315,7 +316,7 @@ class PropertiesScrapePostTestCase(TestCase):
 class PropertiesGetScrapeViewTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.user = User.objects.create_user(username='testuser', password='testpass', is_active=True)
         self.token = AccessToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
         self.property_data = {
@@ -392,90 +393,6 @@ class PropertiesGetScrapeViewTestCase(TestCase):
         self.assertEqual(response.data, 'Scrapyd is not running')
 
 
-class SignUpTestCase(APITestCase):
-    def test_signup_without_username(self):
-        response = self.client.post('/signup/', {'password': 'password'})
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data[0], 'The given username must be set')
-
-    # def test_signup_user_creation_error(self):
-    #     response = self.client.post('/signup/', {'username': 'john', 'password': 'password', 'email': ['invalid']})
-    #     self.assertEqual(response.status_code, 500)
-    #     self.assertEqual(response.data, 'User creation error')
-
-    def test_signup_success(self):
-        response = self.client.post('/signup/',
-                                    {'username': 'john', 'password': 'password', 'email': 'valid@example.com'})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data, 'User created')
-
-        # Verify that a User object was created with the correct attributes
-        user = User.objects.get(username='john')
-        self.assertEqual(user.first_name, '')
-        self.assertEqual(user.last_name, '')
-        self.assertEqual(user.email, 'valid@example.com')
-        self.assertTrue(user.check_password('password'))
-        self.assertFalse(user.is_staff)
-        self.assertFalse(user.is_superuser)
-        self.assertTrue(user.is_active)
 
 
-class JWTokenTestCase(APITestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(username='john', password='password')
 
-    def test_signin_success(self):
-        response = self.client.post('/signin/', {'username': 'john', 'password': 'password'})
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('access', response.data)
-        self.assertIn('refresh', response.data)
-
-    def test_signin_invalid_credentials(self):
-        response = self.client.post('/signin/', {'username': 'john', 'password': 'wrongpassword'})
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
-    def test_token_refresh_success(self):
-        print('test_token_refresh_success')
-        token = RefreshToken.for_user(self.user)
-        response = self.client.post('/signin/refresh/', {'refresh': str(token)})
-        print('response', response)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('access', response.data)
-        self.assertNotEqual(token.access_token, response.data['access'])
-        # Ręczne dodanie tokena odświeżania do blacklisty
-        outstanding_token = OutstandingToken.objects.get(token=token)
-        blacklisted_token = BlacklistedToken.objects.create(token=outstanding_token)
-
-        # Sprawdzenie, czy odświeżony token został dodany do blacklisty
-        # blacklisted_tokens = RefreshToken.objects.filter(token=token)
-        blacklisted_tokens = BlacklistedToken.objects.filter(token=outstanding_token)
-        self.assertTrue(blacklisted_tokens.exists())
-
-    def test_token_refresh_empty_token(self):
-        response = self.client.post('/signin/refresh/', {'refresh': ''})
-        self.assertEqual(response.status_code, 400)
-        self.assertIn('refresh', response.data)
-
-    def test_token_refresh_invalid_token(self):
-        response = self.client.post('/signin/refresh/', {'refresh': 'invalidtoken'})
-        self.assertEqual(response.status_code, 401)
-        self.assertIn('detail', response.data)
-
-    def test_signout_success(self):
-        token = RefreshToken.for_user(self.user)
-        response = self.client.post('/signout/', {'refresh': str(token)})
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, 'OK')
-        # blacklisted_tokens = RefreshToken.objects.filter(token=token)
-        blacklisted_tokens = BlacklistedToken.objects.filter(token__jti=token['jti'])
-        self.assertTrue(blacklisted_tokens.exists())
-
-    def test_signout_empty_token(self):
-        response = self.client.post('/signout/', {'refresh': ''})
-        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
-        self.assertEqual(response.data, 'refresh token is empty')
-
-    def test_signout_invalid_token(self):
-        response = self.client.post('/signout/', {'refresh': 'invalidtoken'})
-        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
-        self.assertEqual(response.data, 'Token is invalid or expired')

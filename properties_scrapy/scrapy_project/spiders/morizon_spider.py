@@ -46,18 +46,20 @@ class MorizonSpider(Spider):
         parsed_url = url_to_params_dict(response.request.url)
 
         if not "page" in parsed_url:
-            print("not page in parsed_url")
-            return False
+            # print("morizon - not page in parsed_url")
+            # return False
+            parsed_url["page"]=1
 
         current_page = parsed_url["page"]
         if not current_page:
-            print("not current_page")
+            print("morizon - not current_page")
             return False
 
         soup = BeautifulSoup(response.text, "html.parser")
 
         num_results = morizon.get_results_count(soup)
         if not num_results:
+            print("morizon - unknown number of results")
             return False
 
         num_pages = math.ceil(num_results / self.results_per_page)
@@ -102,6 +104,7 @@ class MorizonSpider(Spider):
         if service_id_str:
             if re.search("gratka|otodom|olx", service_id_str):
                 # oferta z innego serwisu
+                print("offer from diffrent service")
                 return False
         # item = ScraperItem()
         details_row_set = soup.find("div", {"class": "details-row"}).find_all(

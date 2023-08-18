@@ -1,14 +1,23 @@
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv(".env.prod"))
+
 from .base import *
 from corsheaders.defaults import default_headers
 
-FRONTEND_URL = os.environ.get('FRONTEND_URL')
-HOST_URL = os.environ.get('HOST_URL')
+FRONTEND_DOMAIN = os.environ.get('FRONTEND_URL')
+HOST_DOMAIN = os.environ.get('NGROK_URL')
+HOST_SCHEME = "https"
+PRODUCTION = True
+DEBUG = False
+
+# STATIC_URL = f"{HOST_SCHEME}://{HOST_DOMAIN}/static/"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 CORS_ALLOWED_ORIGINS = [
-    f"http://{FRONTEND_URL}",
-    f"https://{FRONTEND_URL}",
+    f"http://{FRONTEND_DOMAIN}",
+    f"https://{HOST_DOMAIN}",
     "http://localhost:3000",
     "https://localhost:3000",
     "http://127.0.0.1:3000",
@@ -50,7 +59,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ALLOWED_HOSTS = [FRONTEND_URL, HOST_URL, 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [FRONTEND_DOMAIN, HOST_DOMAIN, 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = ['*']
 
 # CORS_ALLOW_METHODS = [
@@ -80,3 +89,5 @@ CORS_ALLOW_HEADERS = default_headers + (
 )
 
 # CORS_ORIGIN_REGEX_WHITELIST=(".*")
+
+

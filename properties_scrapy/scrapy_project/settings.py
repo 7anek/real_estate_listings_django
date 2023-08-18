@@ -10,6 +10,7 @@ import sys
 from django.core.wsgi import get_wsgi_application
 import os
 import socket
+import requests
 # from dotenv import load_dotenv
 #
 # load_dotenv('/home/janek/PycharmProjects/property_scraper_api/.env')
@@ -29,14 +30,21 @@ sys.path.append('../')
 # DJANGO_PROJECT_DIR = os.path.join(SCRAPY_PROJECT_DIR, "..")
 # sys.path.insert(0, DJANGO_PROJECT_DIR)
 
-ipaddress = socket.gethostbyname(socket.gethostname())
-if ipaddress == '127.0.1.1' or ipaddress == '192.168.0.46':
-    DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.local'
-else:
-    DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.production'
+# ipaddress = socket.gethostbyname(socket.gethostname())
+# if ipaddress == '127.0.1.1' or ipaddress == '192.168.0.46':
+#     DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.local'
+# else:
+#     DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.production'
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'real_estate_listings.settings')
-
-os.environ['DJANGO_SETTINGS_MODULE'] = DJANGO_SETTINGS_MODULE
+# def check_production():
+#     try:
+#         response = requests.get(f"https://{os.environ.get('NGROK_URL')}")
+#         return response.status_code != 404
+#     except requests.exceptions.RequestException:
+#         return False
+#
+# DJANGO_SETTINGS_MODULE = 'real_estate_listings.settings.production' if check_production() else 'real_estate_listings.settings.local'
+os.environ['DJANGO_SETTINGS_MODULE'] = os.environ.get('DJANGO_SETTINGS_MODULE','real_estate_listings.settings.local')
 application = get_wsgi_application()  # musi być po ustawieniu DJANGO_SETTINGS_MODULE
 
 BOT_NAME = "scrapy_project"

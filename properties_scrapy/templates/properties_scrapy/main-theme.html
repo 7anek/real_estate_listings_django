@@ -37,8 +37,9 @@
                 autocomplete.addListener('place_changed', function () {
                     console.log('place changed');
                     $("#id_province").val(null);
-                    //$("#id_county").val(null);
+                    $("#id_county").val(null);
                     $("#id_city").val(null);
+                    $("#id_community").val(null);
                     $("#id_district").val(null);
                     $("#id_district_neighbourhood").val(null);
                     $("#id_street").val(null);
@@ -51,6 +52,8 @@
                             $("#id_county").val(component.long_name);
                         } else if (component.types.includes('locality')) {
                             $("#id_city").val(component.long_name);
+                        } else if (component.types.includes('administrative_area_level_3')) {
+                            $("#id_community").val(component.long_name);
                         } else if (component.types.includes('sublocality_level_1')) {
                             $("#id_district").val(component.long_name);
                         } else if (component.types.includes('neighborhood')) {

@@ -35,11 +35,12 @@ class OtodomSpider(Spider):
         # if not search_form:
         #     search_form={'address': 'Elektoralna, Warszawa, Polska', 'province': 'Mazowieckie', 'city': 'Warszawa', 'district': 'Śródmieście','street':'Elektoralna', 'price_min': 300000, 'price_max': 1000000, 'property_type': 'flat', 'offer_type': 'sell'}
 
-        if search_form:
+        if search_form and "street" not in search_form:
             # add pagination params
             search_form["limit"] = self.results_per_page
             search_form["page"] = 1
-            self.use_playwright = "street" in search_form
+            self.use_playwright = any(key in search_form for key in ['city', 'district', 'district_neighbourhood', 'community'])
+            # self.use_playwright = False
             self.search_form = search_form
             self.current_url = self.url_from_params()
             self.start_urls = [self.current_url]
@@ -57,7 +58,7 @@ class OtodomSpider(Spider):
                 selenium.get(url)
                 selenium.implicitly_wait(3)
                 selenium.save_screenshot("../test_data/otodom/otodom1.png")
-                selenium.find_element("id", "onetrust-accept-btn-handler").click()
+                # selenium.find_element("id", "onetrust-accept-btn-handler").click()
                 selenium.find_element("id", "location").click()
                 selenium.find_element(
                     "css selector",
@@ -83,24 +84,24 @@ class OtodomSpider(Spider):
 
     def parse(self, response):
         # return True
-        print("response.request.url", response.request.url)
+        print("otodom - response.request.url", response.request.url)
         parsed_url_query = url_to_params_dict(response.request.url)
-        print("parsed_url_query", parsed_url_query)
+        print("otodom - parsed_url_query", parsed_url_query)
         if not "page" in parsed_url_query:
             print("not page in parsed_url")
             return False
 
         current_page = parsed_url_query["page"]
         if not current_page:
-            print("not current_page")
+            print("otodom - not current_page")
             return False
-        print("current_page", current_page)
+        print("otodom - current_page", current_page)
         # tu chce wyszukać ulice
 
         num_results = self.get_results_num(response)
         if not num_results:
             return False
-        print("num_results", num_results)
+        print("otodom - num_results", num_results)
         results_per_page = 24
         num_pages = math.ceil(num_results / results_per_page)
         num_pages = (
@@ -108,7 +109,7 @@ class OtodomSpider(Spider):
             if num_pages > self.max_pages_download
             else num_pages
         )
-        print("num_pages", num_pages)
+        print("otodom - num_pages", num_pages)
 
         if "locations" in parsed_url_query:
             self.search_form["locations"] = parsed_url_query["locations"]

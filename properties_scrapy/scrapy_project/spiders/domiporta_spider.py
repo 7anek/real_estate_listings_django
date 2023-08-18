@@ -60,12 +60,12 @@ class DomiportaSpider(Spider):
             parsed_url = url_to_params_dict(response.request.url)
 
         if not "PageNumber" in parsed_url:
-            print("not page in parsed_url")
+            print("domiporta - not page in parsed_url")
             return False
 
         current_page = parsed_url["PageNumber"]
         if not current_page:
-            print("not current_page")
+            print("domiporta - not current_page")
             return False
 
         soup = BeautifulSoup(response.text, "html.parser")

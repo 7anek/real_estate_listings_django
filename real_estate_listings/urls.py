@@ -19,11 +19,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/auth/", include("django.contrib.auth.urls")),
+    path("accounts/token/", include("accounts.urls")),
+    path('api-auth', include('rest_framework.urls')),
     path('', include("properties_api.urls")),
     path('scrapy/', include("properties_scrapy.urls")),
-    path('api-auth', include('rest_framework.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

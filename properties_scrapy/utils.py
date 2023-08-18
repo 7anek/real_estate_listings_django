@@ -1,9 +1,12 @@
 import unicodedata
 from urllib.parse import unquote, parse_qs, urlparse, urlunparse, urlencode
-
+import os
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 import requests
 from django.conf import settings
 import logging
@@ -25,16 +28,21 @@ def selenium_browser(headless=True):
     chrome_options = Options()
     if headless:
         chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
+
     # return webdriver.Chrome("/home/janek/python/property_scraper/chromedriver", options=chrome_options)
     #return webdriver.Chrome("chromedriver", options=chrome_options)
-
-
-    # webdriver_service = Service('static/properties_scrapy/chrome-linux64/chrome')
-    # self.driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
-    return webdriver.Remote("http://selenium:4444/wd/hub", options=chrome_options)
+    print('ENVIRONMENT',os.environ['ENVIRONMENT'])
+    if os.environ['ENVIRONMENT'] == 'development':
+        return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        # webdriver_service = Service("/home/janek/documents/chromedriver")
+        # return webdriver.Chrome(service=webdriver_service, options=chrome_options)
+        # return webdriver.Chrome('static/properties_scrapy/chrome-linux64/chrome', options=chrome_options)
+        # return webdriver.Chrome(service=webdriver_service, options=chrome_options)
+    else:
+        chrome_options.add_argument("--window-size=1920,1080")
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        return webdriver.Remote("http://selenium:4444/wd/hub", options=chrome_options)
 
 
 def is_scrapyd_running():

@@ -49,8 +49,9 @@ class SearchForm(forms.Form):
     address = forms.CharField(required=False, initial="Grodzisk Mazowiecki")
     # google_maps_location_json=forms.JSONField(required=False)
     province=forms.CharField(required=False)#województwo
-    # county=forms.CharField(required=False)#powiat
+    county=forms.CharField(required=False)#powiat
     city=forms.CharField(required=False)
+    community=forms.CharField(required=False)
     district=forms.CharField(required=False)
     district_neighbourhood=forms.CharField(required=False)#poddzielnica np Muranów
     street=forms.CharField(required=False)

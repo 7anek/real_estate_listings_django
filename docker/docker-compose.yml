@@ -1,6 +1,12 @@
 version: '3'
 services:
   django:
+    environment:
+      - IS_DOCKER=True
+      - ENVIRONMENT=${ENVIRONMENT}
+      - NGROK_API_KEY=${NGROK_API_KEY}
+      - NGROK_URL=${NGROK_URL}
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -20,20 +26,23 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./../static:/app/static
     depends_on:
       - django
     networks:
       - backend
   db:
     image: postgis/postgis:14-3.3
-    environment:
-      POSTGRES_DB: ${PG_DBNAME}
-      POSTGRES_USER: ${PG_USER}
-      POSTGRES_PASSWORD: ${PG_PASSWORD}
-    volumes:
-      - db_data:/var/lib/postgresql/data
     networks:
       - backend
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${DB_VOLUME}:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
   selenium:
     image: selenium/standalone-chrome:latest
     ports:
@@ -42,5 +51,7 @@ services:
       - backend
 volumes:
   db_data:
+  staging_db_data:
+  production_db_data:
 networks:
   backend:

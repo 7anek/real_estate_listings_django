@@ -34,7 +34,8 @@ def crawl(request):
                 # job_id = scrapyd.schedule('default', 'otodom', search_form = json.dumps(search_form.cleaned_data))
                 # job_id = scrapyd.schedule('default', 'otodom', settings=settings)
                 try:
-                    scrapy_factory = ScrapydSpiderFactory(json.dumps(search_form.cleaned_data))
+                    # scrapy_factory = ScrapydSpiderFactory(json.dumps(search_form.cleaned_data))
+                    scrapy_factory = ScrapydSpiderFactory(search_form.cleaned_data)
                 except Exception as e:
                     print(str(e))
                 print('++++++++++++++++++scrapy_factory created')

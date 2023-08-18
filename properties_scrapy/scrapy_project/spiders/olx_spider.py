@@ -99,8 +99,8 @@ class OlxSpider(Spider):
 
     def parse(self, response):
         parsed_url_query = url_to_params_dict(response.request.url)
-        print("response.request.url", response.request.url)
-        print("parsed_url", parsed_url_query)
+        print("olx - response.request.url", response.request.url)
+        print("olx - parsed_url", parsed_url_query)
         if not "page" in parsed_url_query:
             # print('not page in parsed_url')
             # return False

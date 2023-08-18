@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from rest_framework import viewsets, status
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
@@ -20,6 +21,8 @@ from properties_scrapy.utils import is_scrapyd_running
 from properties_scrapy.scrapyd_api import scrapyd
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.core.mail import send_mail
+import uuid
 
 
 # Create your views here.
@@ -52,7 +55,8 @@ class PropertiesScrape(APIView):
             if not is_scrapyd_running():
                 return Response("Scrapyd unavailable", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             try:
-                scrapy_factory = ScrapydSpiderFactory(json.dumps(search_form.cleaned_data))
+                # scrapy_factory = ScrapydSpiderFactory(json.dumps(search_form.cleaned_data))
+                scrapy_factory = ScrapydSpiderFactory(search_form.cleaned_data)
                 print('++++++++++++++++++scrapy_factory created')
                 scrapy_factory.create_spiders()
                 print('++++++++++++++++++scrapy_factory spiders created', scrapy_factory.job_ids)
@@ -100,53 +104,4 @@ class PropertiesScrape(APIView):
             uuids)
 
 
-class SignUp(APIView):
-    permission_classes = [AllowAny]
 
-    def post(self, request):
-
-        first_name = request.data["first_name"] if "first_name" in request.data else ""
-        last_name = request.data["last_name"] if "last_name" in request.data else ""
-        email = request.data["email"] if "email" in request.data else ""
-        if "username" in request.data:
-            username = request.data["username"]
-        else:
-            raise ValidationError("The given username must be set")
-        password = request.data["password"] if "password" in request.data else ""
-        try:
-            user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email,
-                                            password=password, is_staff=False, is_superuser=False, is_active=True)
-        except Exception as e:
-            # raise APIException(str(e))
-            return Response(e, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        try:
-            user.save()
-        except Exception as e:
-            # raise APIException(str(e))
-            return Response(e, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-        return Response("User created")
-
-
-class SignIn(TokenObtainPairView):
-    permission_classes = [AllowAny]
-
-
-class SignOut(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-        print('SignOut view')
-        token = request.data["refresh"]
-        if not token:
-            print('not token')
-            return Response("refresh token is empty", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        try:
-            refresh_token = RefreshToken(token)
-        except Exception as e:
-            print(str(e))
-            # raise APIException(str(e))
-            return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        print('adding token to blacklist')
-        refresh_token.blacklist()
-        return Response("OK")

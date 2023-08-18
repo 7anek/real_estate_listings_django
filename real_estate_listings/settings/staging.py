@@ -1,6 +1,7 @@
 from dotenv import load_dotenv,find_dotenv
-load_dotenv(find_dotenv(".env.dev"))
+load_dotenv(find_dotenv(".env.stg"))
 from .base import *
+from corsheaders.defaults import default_headers
 
 PRODUCTION=False
 DEBUG=True
@@ -14,12 +15,14 @@ DEBUG=True
 # ]
 AUTH_PASSWORD_VALIDATORS = []
 ALLOWED_HOSTS = ['*']
-# CORS_ALLOWED_ORIGIN_REGEXES = [
-#     r"^https?://\.+\.ngrok\-free\.app(:\d+)?$",
-# ]
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = default_headers + (
+    "ngrok-skip-browser-warning",
+)
 HOST_URL="localhost:8000"
 HOST_SCHEME="http"
+
+
 
 
 

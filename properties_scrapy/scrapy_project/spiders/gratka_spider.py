@@ -83,12 +83,12 @@ class GratkaSpider(Spider):
         parsed_url_query = url_to_params_dict(response.request.url)
 
         if not "page" in parsed_url_query:
-            print("not page in parsed_url")
+            print("gratka - not page in parsed_url")
             return False
 
         current_page = parsed_url_query["page"]
         if not current_page:
-            print("not current_page")
+            print("gratka - not current_page")
             return False
 
         url_path = get_url_path(response.request.url)

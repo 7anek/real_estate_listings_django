@@ -90,8 +90,9 @@ class Property(models.Model):
     # localization fields
     address = models.CharField(max_length=255, null=True)
     province = models.CharField(max_length=255, null=True)
-    city = models.CharField(max_length=255, null=True)
     county = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    community = models.CharField(max_length=255, null=True)
     district = models.CharField(max_length=255, null=True)
     district_neighbourhood = models.CharField(max_length=255, null=True)  # poddzielnica np Muranów
     street = models.CharField(max_length=255, null=True)

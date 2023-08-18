@@ -11,7 +11,7 @@ class PropertySerializer(serializers.ModelSerializer):
             'id', 'service_id', 'service_name', 'service_url', 'scrapyd_job_id', 'create_date', 'modify_date', 'title',
             'price', 'description', 'area', 'property_type', 'offer_type', 'regular_user', 'address', 'province',
             'county',
-            'city', 'district', 'district_neighbourhood', 'street', 'floor', 'building_floors_num', 'rent', 'flat_type',
+            'city','community', 'district', 'district_neighbourhood', 'street', 'floor', 'building_floors_num', 'rent', 'flat_type',
             'ownership', 'heating', 'market_type', 'construction_status', 'number_of_rooms', 'build_year', 'plot_type',
             'house_type', 'plot_area', 'garage_heating', 'garage_lighted', 'garage_localization', 'forest_vicinity',
             'open_terrain_vicinity', 'lake_vicinity', 'electricity', 'gas', 'sewerage', 'water', 'fence',

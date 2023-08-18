@@ -16,9 +16,9 @@ from corsheaders.defaults import default_headers
 from datetime import timedelta
 from pathlib import Path
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+# from dotenv import load_dotenv
+#
+# load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'TRUE'
+# DEBUG = os.environ.get('DEBUG') == 'TRUE'
+IS_DOCKER = os.environ.get("IS_DOCKER", False)
 # DEBUG = True
 TESTING = 'test' in sys.argv
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
@@ -120,18 +121,19 @@ WSGI_APPLICATION = 'real_estate_listings.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.environ.get('PG_DBNAME'),
-        'USER': os.environ.get('PG_USER'),
-        'PASSWORD': os.environ.get('PG_PASSWORD'),
-        'HOST': os.environ.get('PG_HOST'),
-        'PORT': os.environ.get('PG_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': os.environ.get('PG_DBNAME'),
+#         'USER': os.environ.get('PG_USER'),
+#         'PASSWORD': os.environ.get('PG_PASSWORD'),
+#         'HOST': "db" if IS_DOCKER else os.environ.get('PG_HOST'),
+#         'PORT': os.environ.get('PG_PORT'),
+#     }
+# }
 
 # AUTH_USER_MODEL = 'your_app_name.User'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -177,6 +179,19 @@ STATIC_URL = "static/"
 MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.environ.get('PG_DBNAME'),
+        'USER': os.environ.get('PG_USER'),
+        'PASSWORD': os.environ.get('PG_PASSWORD'),
+        'HOST': os.environ.get('PG_HOST'),
+        'PORT': os.environ.get('PG_PORT'),
+    }
+}
+print(DATABASES)
+print(os.environ.get('DJANGO_SETTINGS_MODULE'))
+
 # SCRAPEOPS_API_KEY = os.getenv('SCRAPEOPS_API_KEY')
 # EXTENSIONS = {
 #     'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
@@ -206,6 +221,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS_ALLOW_HEADERS = list(default_headers)
 # CSRF_COOKIE_SECURE=False
 # SESSION_COOKIE_SECURE=False
+
+# dotyczą widoków, które dziedziczą z widoków dostarczonych przez DRF.
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -216,6 +233,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailorUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # SIMPLE_JWT = {
 #     "ACCESS_TOKEN_LIFETIME": timedelta(seconds=20),
@@ -229,7 +251,10 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # Utworzenie obsługi logowania do pliku
-file_handler = logging.FileHandler('django.log')
+logs_path = 'django.log' if IS_DOCKER else 'logs/django.log'
+# file_handler = logging.FileHandler('django.log')
+file_handler = logging.FileHandler(logs_path)
+
 file_handler.setLevel(logging.DEBUG)
 
 # Dodanie obsługi logowania do loggera
@@ -243,7 +268,8 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'django.log',
+            # 'filename': 'django.log',
+            'filename': logs_path,
         },
     },
     'root': {
@@ -253,3 +279,10 @@ LOGGING = {
 }
 
 # LIVE_SERVER_PORT = 8000
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
