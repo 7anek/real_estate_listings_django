@@ -8,9 +8,14 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import requests
+# from fp.fp import FreeProxy
 from django.conf import settings
+
+import random
 import logging
 logger = logging.getLogger(__name__)
+
+
 
 def localization_fields_from_search_form(item, search_form):
     item["address"] = search_form["address"] if "address" in search_form else None
@@ -24,14 +29,21 @@ def localization_fields_from_search_form(item, search_form):
     return item
 
 
-def selenium_browser(headless=True):
+def selenium_browser(headless=True, proxy=False):
     chrome_options = Options()
     if headless:
         chrome_options.add_argument("--headless")
 
     # return webdriver.Chrome("/home/janek/python/property_scraper/chromedriver", options=chrome_options)
     #return webdriver.Chrome("chromedriver", options=chrome_options)
-    print('ENVIRONMENT',os.environ['ENVIRONMENT'])
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0'
+    chrome_options.add_argument(f"user-agent={user_agent}")
+    # proxy = FreeProxy().get()
+    if proxy:
+        chrome_options.add_argument(f'--proxy-server={proxy}')
+    chrome_options.add_argument("--window-size=1920,1080")
+
+    # print('ENVIRONMENT',os.environ['ENVIRONMENT'])
     if os.environ['ENVIRONMENT'] == 'development':
         return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
         # webdriver_service = Service("/home/janek/documents/chromedriver")
@@ -39,10 +51,14 @@ def selenium_browser(headless=True):
         # return webdriver.Chrome('static/properties_scrapy/chrome-linux64/chrome', options=chrome_options)
         # return webdriver.Chrome(service=webdriver_service, options=chrome_options)
     else:
-        chrome_options.add_argument("--window-size=1920,1080")
+
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
         return webdriver.Remote("http://selenium:4444/wd/hub", options=chrome_options)
+
+# def get_proxy(proxies):
+#     return random.choice(proxies) if proxies else False
+
 
 
 def is_scrapyd_running():

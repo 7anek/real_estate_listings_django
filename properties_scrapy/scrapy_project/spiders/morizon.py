@@ -60,7 +60,12 @@ def get_url_query(search_params,page=1,limit=24):
     return url_query
 
 def get_results_count(soup):
-    return int(soup.find("h1").text.split()[0])
+    no_results_div = soup.find('div', class_='noResultsNotification')
+    if no_results_div is None:
+        return int(soup.find("h1").text.split()[0])
+    else:
+        return 0
+
 
 def get_results_set(soup):
     return soup.find_all("a",{"class":"offer__outer"})

@@ -243,7 +243,7 @@ class GratkaSpider(Spider):
             _ = self.get_parameter_value(soup, "Powierzchnia działki w m2")
             if _:
                 if re.search("^([\d\s\.\,]+) m2", _):
-                    return float(re.search("^([\d\s\.\,]+) m2", _).group(1))
+                    return float(re.search("^([\d\s\.\,]+) m2", _).group(1).replace(" ", "").replace(",", "."))
         return 0.0
 
     def parse_flat_type(self, data2):

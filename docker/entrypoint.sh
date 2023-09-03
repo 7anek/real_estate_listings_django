@@ -3,6 +3,10 @@
 python manage.py makemigrations
 python manage.py migrate
 
+pip install celery
+pip install redis
+
+python -m celery -A real_estate_listings worker &
 #tmux new-session -d -s scrapyd 'cd /app/properties_scrapy && scrapyd' && \
 #    cd /app && gunicorn --config docker/gunicorn.conf.py real_estate_listings.wsgi:application
 echo "000000000000000000 ENVIRONMENT: $ENVIRONMENT"
@@ -39,4 +43,5 @@ else
     echo "not production"
     tmux new-session -d -s scrapyd 'cd /app/properties_scrapy && scrapyd' && \
         cd /app && gunicorn --config docker/gunicorn.conf.py real_estate_listings.wsgi:application
+
 fi

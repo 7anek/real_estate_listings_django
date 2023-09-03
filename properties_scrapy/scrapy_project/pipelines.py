@@ -19,13 +19,27 @@ class PropertiesScrapyPipeline:
         # p = Property.objects.create(service_name='b', service_url='b', price=1, area=1, property_type='b')
         # print('ScraperPipeline Property.objects.all().count()', Property.objects.all().count())
 
+        # if item["service_id"]:
+        #     existing_objects = Property.objects.filter(
+        #         service_id=item["service_id"], service_name=item["service_name"]
+        #     )
+        #     print('existing_objects', existing_objects)
+        #     if existing_objects:
+        #         existing_objects.first().delete()
+        #         print('|||||||||||||||||||| ScraperPipeline existing_object deleted')
+        # item.save()
+
         if item["service_id"]:
-            existing_objects = Property.objects.filter(
-                service_id=item["service_id"], service_name=item["service_name"]
-            )
-            print('existing_objects', existing_objects)
-            if existing_objects:
-                existing_objects.first().delete()
-                print('|||||||||||||||||||| ScraperPipeline existing_object deleted')
-        item.save()
+            try:
+                existing_object = Property.objects.get(service_id=item["service_id"])
+                for key, value in item.items():
+                    setattr(existing_object, key, value)
+
+                existing_object.save()
+                print('|||||||||||||||||||| ScraperPipeline existing_object updated')
+            except Property.DoesNotExist:
+                new_object = Property(**item)
+                new_object.save()
+                print('|||||||||||||||||||| ScraperPipeline new_object created')
+
         print('|||||||||||||||||||| ScraperPipeline item saved')

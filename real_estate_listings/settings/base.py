@@ -189,8 +189,8 @@ DATABASES = {
         'PORT': os.environ.get('PG_PORT'),
     }
 }
-print(DATABASES)
-print(os.environ.get('DJANGO_SETTINGS_MODULE'))
+# print(DATABASES)
+# print(os.environ.get('DJANGO_SETTINGS_MODULE'))
 
 # SCRAPEOPS_API_KEY = os.getenv('SCRAPEOPS_API_KEY')
 # EXTENSIONS = {

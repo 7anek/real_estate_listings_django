@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
-
+from selenium.common import ElementNotInteractableException
+# from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from properties_scrapy.utils import *
 from scrapy.spiders import Spider
 from scrapy import Request
@@ -23,11 +27,13 @@ class OtodomSpider(Spider):
     results_per_page = 24
     first_offer_detail = True
     max_pages_download = 5
+    proxies = []
 
     def __init__(self, *args, **kwargs):
         super(OtodomSpider, self).__init__(*args, **kwargs)
         search_form_json = kwargs.get("search_form", False)
         self.scrapyd_job_id = kwargs.get("_job")
+        self.proxies = json.loads(kwargs.get("proxies","[]"))
         search_form = json.loads(search_form_json) if search_form_json else {}
 
         search_form = dict_filter_none(search_form)
@@ -35,11 +41,11 @@ class OtodomSpider(Spider):
         # if not search_form:
         #     search_form={'address': 'Elektoralna, Warszawa, Polska', 'province': 'Mazowieckie', 'city': 'Warszawa', 'district': 'Śródmieście','street':'Elektoralna', 'price_min': 300000, 'price_max': 1000000, 'property_type': 'flat', 'offer_type': 'sell'}
 
-        if search_form and "street" not in search_form:
+        if search_form:
             # add pagination params
             search_form["limit"] = self.results_per_page
             search_form["page"] = 1
-            self.use_playwright = any(key in search_form for key in ['city', 'district', 'district_neighbourhood', 'community'])
+            self.use_playwright = any(key in search_form for key in ['city', 'district', 'district_neighbourhood', 'community', 'street'])
             # self.use_playwright = False
             self.search_form = search_form
             self.current_url = self.url_from_params()
@@ -54,33 +60,90 @@ class OtodomSpider(Spider):
     def start_requests(self):
         if self.use_playwright:
             for url in self.start_urls:
-                selenium = selenium_browser()
-                selenium.get(url)
-                selenium.implicitly_wait(3)
-                selenium.save_screenshot("../test_data/otodom/otodom1.png")
+                while self.proxies:
+                    proxy = self.get_random_proxy()
+                    selenium = selenium_browser(proxy)
+                    selenium.get(url)
+                    selenium.implicitly_wait(3)
+                    selenium.save_screenshot("../test_data/otodom/otodom4.png")
+
+                    try:
+                        element = WebDriverWait(selenium, 3).until(
+                            EC.presence_of_element_located((By.ID, "location"))
+                        )
+                    except Exception as e:
+                        print("Proxy is not working. Error:", str(e))
+                        element = False
+                        self.remove_proxy(proxy)
+                    if element:
+                        break
+                if not self.proxies:
+                    return False # można selenium = selenium_browser bez proxy
                 # selenium.find_element("id", "onetrust-accept-btn-handler").click()
-                selenium.find_element("id", "location").click()
+                accept_button = selenium.find_element(By.ID, "onetrust-accept-btn-handler")
+                if accept_button:
+                    accept_button.click()
+                selenium.find_element(By.ID, "location").click()
                 selenium.find_element(
                     "css selector",
                     'ul[data-testid="selected-locations"] > li:nth-child(2)',
                 ).click()
-                selenium.find_element("id", "location-picker-input").send_keys(
+                selenium.find_element(By.ID, "location-picker-input").send_keys(
                     self.search_form["address"]
                 )
-                selenium.find_element(
-                    "css selector", "ul.css-1tsmnl6 li:first-child"
-                ).click()
                 selenium.save_screenshot("../test_data/otodom/otodom2.png")
-                selenium.find_element("id", "search-form-submit").click()
+                first_localization=selenium.find_element(By.CSS_SELECTOR,
+                    'div[data-cy="search.form.location.dropdown.list-wrapper"] li')
+                try:
+                    first_localization.click()
+                except ElementNotInteractableException as e:
+                    selenium.implicitly_wait(2)
+                    first_localization = selenium.find_element(By.CSS_SELECTOR,
+                                                               'div[data-cy="search.form.location.dropdown.list-wrapper"] li')
+                    selenium.save_screenshot("../test_data/otodom/otodom3.png")
+                    first_localization.click()
+                # selenium.find_element(By.CSS_SELECTOR, "ul.css-1tsmnl6 li:first-child").click()
+                # selenium.save_screenshot("../test_data/otodom/otodom2.png")
+                selenium.find_element(By.ID, "search-form-submit").click()
                 selenium.implicitly_wait(3)
-                selenium.save_screenshot("../test_data/otodom/otodom3.png")
+                # selenium.save_screenshot("../test_data/otodom/otodom3.png")
                 print("selenium.current_url", selenium.current_url)
                 new_url = selenium.current_url
                 selenium.close()
-                yield Request(url=new_url)
+                proxy = self.get_random_proxy()
+                if proxy:
+                    yield Request(url=new_url, meta={"proxy": f"{self.scheme}://{proxy}"},errback=self.errback_parse, callback=self.parse)
+                # else:
+                #     yield Request(url=new_url, callback=self.parse)
         else:
             for url in self.start_urls:
-                yield Request(url=url)
+                proxy = self.get_random_proxy()
+                if proxy:
+                    yield Request(url=url, meta={"proxy": f"{self.scheme}://{proxy}"},errback=self.errback_parse, callback=self.parse)
+
+
+    def errback_parse(self, failure):
+        print("errback_parse")
+        print(failure)
+        proxy_used = failure.request.meta.get('proxy')
+        if proxy_used:
+            proxy_cleaned = proxy_used.replace('http://', '').replace('https://', '')
+            self.remove_proxy(proxy_cleaned)
+            new_proxy = self.get_random_proxy()
+            for url in self.start_urls:
+                if new_proxy:
+                    yield Request(url=url, meta={"proxy": f"{self.scheme}://{new_proxy}"},errback=self.errback_parse, callback=self.parse, dont_filter=True)
+                # else:
+                #     yield Request(url=url, callback=self.parse, dont_filter=True)
+
+    def get_random_proxy(self):
+        return random.choice(self.proxies) if self.proxies else False
+
+    def remove_proxy(self, proxy):
+        if proxy in self.proxies:
+            self.proxies.remove(proxy)
+    # def urls_loop(self):
+    #     for url in self.start_urls:
 
     def parse(self, response):
         # return True
@@ -117,7 +180,11 @@ class OtodomSpider(Spider):
         if num_pages and int(current_page) == 1:
             for i in range(2, num_pages + 1):
                 self.current_url = self.url_from_params(page=i, limit=results_per_page)
-                yield response.follow(self.current_url)
+                proxy = self.get_random_proxy()
+                if proxy:
+                    yield response.follow(self.current_url, meta={"proxy": f"{self.scheme}://{proxy}"},errback=self.errback_parse_offer, dont_filter=True, callback=self.parse_offer)
+                # else:
+                #     yield response.follow(self.current_url, dont_filter=True, callback=self.parse_offer)
 
         m = re.search(r"ad_impressions\":\[((\d+,)*\d+)\]", response.text)
         offers_ids = list(set((m.group(1).split(","))))
@@ -126,12 +193,31 @@ class OtodomSpider(Spider):
             map(lambda offer_id: domain + offer_id, set((m.group(1).split(","))))
         )
         for offer_url in offers_urls:
-            yield response.follow(offer_url, callback=self.parse_offer)
+            proxy = self.get_random_proxy()
+            if proxy:
+                yield response.follow(offer_url, meta={"proxy": f"{self.scheme}://{proxy}"},
+                                      errback=self.errback_parse_offer, dont_filter=True, callback=self.parse_offer)
+            # else:
+            #     yield response.follow(offer_url, dont_filter=True, callback=self.parse_offer)
 
         # offers_html = soup.find_all('a', {"data-cy": "listing-item-link"})
         # for offer in offers_html:
         #     print('******************', offer['href'], '//////////////////')
         #     yield response.follow("https://www.otodom.pl"+offer['href'], callback=self.parse_get)
+
+    def errback_parse_offer(self, failure):
+        print("errback_parse_offer")
+        print(failure)
+        proxy_used = failure.request.meta.get('proxy')
+        if proxy_used:
+            proxy_cleaned = proxy_used.replace('http://', '').replace('https://', '')
+            self.remove_proxy(proxy_cleaned)
+            new_proxy = self.get_random_proxy()
+            if new_proxy:
+                yield Request(url=failure.request.url, meta={"proxy": f"{self.scheme}://{new_proxy}"},errback=self.errback_parse, callback=self.parse_offer, dont_filter=True)
+            # else:
+            #     yield Request(url=failure.request.url, callback=self.parse_offer, dont_filter=True)
+
 
     def parse_offer(self, response):
         # if self.first_offer_detail:

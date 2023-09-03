@@ -6,7 +6,7 @@ from .base import *
 from corsheaders.defaults import default_headers
 
 FRONTEND_DOMAIN = os.environ.get('FRONTEND_URL')
-HOST_DOMAIN = os.environ.get('NGROK_URL')
+HOST_URL = os.environ.get('NGROK_URL')
 HOST_SCHEME = "https"
 PRODUCTION = True
 DEBUG = False
@@ -16,8 +16,10 @@ DEBUG = False
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 CORS_ALLOWED_ORIGINS = [
+    f"https://{FRONTEND_DOMAIN}",
+    f"https://{HOST_URL}",
     f"http://{FRONTEND_DOMAIN}",
-    f"https://{HOST_DOMAIN}",
+    f"http://{HOST_URL}",
     "http://localhost:3000",
     "https://localhost:3000",
     "http://127.0.0.1:3000",
@@ -34,10 +36,10 @@ CORS_ALLOWED_ORIGINS = [
 # CSRF_TRUSTED_ORIGINS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://real-estate-listings-frontend.vercel.app",
-    "https://real-estate-listings-frontend.vercel.app",
-    "http://blessed-flea-crisp.ngrok-free.app",
-    "https://blessed-flea-crisp.ngrok-free.app",
+    f"http://{FRONTEND_DOMAIN}",
+    f"https://{FRONTEND_DOMAIN}",
+    f"http://{HOST_URL}",
+    f"https://{HOST_URL}",
     "http://localhost",
     "https://localhost"
 ]
@@ -59,7 +61,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ALLOWED_HOSTS = [FRONTEND_DOMAIN, HOST_DOMAIN, 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [FRONTEND_DOMAIN, HOST_URL, 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = ['*']
 
 # CORS_ALLOW_METHODS = [
@@ -89,5 +91,10 @@ CORS_ALLOW_HEADERS = default_headers + (
 )
 
 # CORS_ORIGIN_REGEX_WHITELIST=(".*")
-
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
 

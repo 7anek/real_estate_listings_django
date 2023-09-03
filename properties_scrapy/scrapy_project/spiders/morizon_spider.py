@@ -57,6 +57,8 @@ class MorizonSpider(Spider):
 
         soup = BeautifulSoup(response.text, "html.parser")
 
+
+
         num_results = morizon.get_results_count(soup)
         if not num_results:
             print("morizon - unknown number of results")
@@ -204,13 +206,14 @@ class MorizonSpider(Spider):
 
     def parse_area(self, detailed_information_set):
         try:
+            detail_information_text = self.get_detail_information_text(detailed_information_set, "Pow. całkowita")
+            if not detail_information_text:
+                detail_information_text = self.get_detail_information_text(detailed_information_set, "Pow. działki")
             return float(
                 re.sub(
                     r"[^\d.,]",
                     "",
-                    self.get_detail_information_text(
-                        detailed_information_set, "Pow. całkowita"
-                    ),
+                    detail_information_text,
                 ).replace(",", ".")
             )
         except:

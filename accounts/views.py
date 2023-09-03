@@ -21,45 +21,6 @@ import os
 from django.http import HttpResponseRedirect
 
 # Create your views here.
-class SignUp(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-
-        first_name = request.data["first_name"] if "first_name" in request.data else ""
-        last_name = request.data["last_name"] if "last_name" in request.data else ""
-        if "email" in request.data:
-            email = request.data["email"]
-        else:
-            raise ValidationError("The given email must be set")
-        if "username" in request.data:
-            username = request.data["username"]
-        else:
-            raise ValidationError("The given username must be set")
-        password = request.data["password"] if "password" in request.data else ""
-        try:
-            user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email,
-                                            password=password, is_staff=False, is_superuser=False, is_active=False)
-            confirmation_token = uuid.uuid4()
-            user.confirmation_token = confirmation_token
-            user.save()
-
-            # confirmation_link = f"https://{settings.HOST_URL}/confirm-email/?token={confirmation_token}"
-            # confirmation_link = f"{settings.HOST_URL}/confirm-email/?token={confirmation_token}"
-            confirmation_link = generate_url(scheme=settings.HOST_SCHEME, netloc=settings.HOST_URL,
-                                             path=reverse('accounts:email_confirmation', kwargs={"token": confirmation_token}))
-            send_mail(
-                "Potwierdzenie Emaila",
-                f"Kliknij w poniższy link, aby potwierdzić swój email: {confirmation_link}",
-                settings.EMAIL_HOST_USER,
-                [email],
-                fail_silently=False,
-            )
-        except Exception as e:
-            raise APIException(str(e))
-            # return Response(e, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-        return Response("User created")
 
 
 class SignUp(APIView):

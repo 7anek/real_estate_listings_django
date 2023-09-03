@@ -45,6 +45,8 @@ def get_url_query(search_params, page=1, limit=24):
 
     if 'price_min' in search_params:
         url_query['cena-calkowita:min'] = search_params['price_min']
+    else:
+        url_query['cena-calkowita:min'] = 1#dają mnóstwo ofert z ceną "Zapytaj o cenę", w ten sposób się nieznajdą
     if 'price_max' in search_params:
         url_query['cena-calkowita:max'] = search_params['price_max']
     if 'area_min' in search_params:
