@@ -23,10 +23,10 @@ class ScrapydSpiderFactory:
 
     def create_spiders(self):
         print('create_spiders')
-        # spider_names = ['otodom', 'olx', 'domiporta', 'morizon', 'gratka']
+        spider_names = ['otodom', 'olx', 'domiporta', 'morizon', 'gratka']
         self.proxies = proxy_list()
         # spider_names=['domiporta', 'morizon', 'gratka']
-        spider_names = ['otodom']
+        # spider_names = ['otodom']
         location_level = determine_location_level(self.search_form)
         if location_level:
             for spider_name in spider_names:
