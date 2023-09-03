@@ -6,6 +6,8 @@ services:
       - ENVIRONMENT=${ENVIRONMENT}
       - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - REDIS_URL=redis://redis:6379
+      - NGROK_API_KEY=${NGROK_API_KEY}
+      - NGROK_URL=${NGROK_URL}
     build:
       context: ..
       dockerfile: docker/Dockerfile

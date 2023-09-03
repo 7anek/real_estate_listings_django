@@ -34,11 +34,12 @@ if [ "$ENVIRONMENT" = "production" ]; then
 
     # Uruchomienie ngrok
     ngrok http --domain="$NGROK_URL" 8000
+#    ngrok http --domain="$NGROK_URL" 80
 
     # Zakończenie skryptu
     echo "Skrypt został wykonany"
 else
-    # Zainstaluj tmux do otwierania nowych zakładem konsoli i odpalania tam zadań w tle, potrzebne do uruchomienia scrapyd
+    # Zainstaluj tmux do otwierania nowych zakładek konsoli i odpalania tam zadań w tle, potrzebne do uruchomienia scrapyd
     apt-get update && apt-get install -y tmux
     echo "not production"
     tmux new-session -d -s scrapyd 'cd /app/properties_scrapy && scrapyd' && \
