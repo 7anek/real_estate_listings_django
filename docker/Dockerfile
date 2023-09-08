@@ -27,7 +27,7 @@ RUN pip install webdriver-manager
 #RUN apt-get update && apt-get install -y tmux
 
 # Skopiuj resztę projektu do kontenera
-COPY .. .
+COPY . .
 
 RUN chmod +x /app/docker/entrypoint.sh
 
