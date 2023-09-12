@@ -182,9 +182,9 @@ class OtodomSpider(Spider):
                 self.current_url = self.url_from_params(page=i, limit=results_per_page)
                 proxy = self.get_random_proxy()
                 if proxy:
-                    yield response.follow(self.current_url, meta={"proxy": f"{self.scheme}://{proxy}"},errback=self.errback_parse_offer, dont_filter=True, callback=self.parse_offer)
+                    yield response.follow(self.current_url, meta={"proxy": f"{self.scheme}://{proxy}"},errback=self.errback_parse, dont_filter=True, callback=self.parse)
                 # else:
-                #     yield response.follow(self.current_url, dont_filter=True, callback=self.parse_offer)
+                #     yield response.follow(self.current_url, dont_filter=True, callback=self.parse)
 
         m = re.search(r"ad_impressions\":\[((\d+,)*\d+)\]", response.text)
         offers_ids = list(set((m.group(1).split(","))))
@@ -214,7 +214,7 @@ class OtodomSpider(Spider):
             self.remove_proxy(proxy_cleaned)
             new_proxy = self.get_random_proxy()
             if new_proxy:
-                yield Request(url=failure.request.url, meta={"proxy": f"{self.scheme}://{new_proxy}"},errback=self.errback_parse, callback=self.parse_offer, dont_filter=True)
+                yield Request(url=failure.request.url, meta={"proxy": f"{self.scheme}://{new_proxy}"},errback=self.errback_parse_offer, callback=self.parse_offer, dont_filter=True)
             # else:
             #     yield Request(url=failure.request.url, callback=self.parse_offer, dont_filter=True)
 
@@ -228,7 +228,7 @@ class OtodomSpider(Spider):
         offer_dict = data["props"]["pageProps"]["ad"]
 
         if not offer_dict:
-            return False
+            return None
 
         item = ScrapyItem()
         # item = {}

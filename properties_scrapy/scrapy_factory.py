@@ -10,7 +10,7 @@ import requests
 
 class ScrapydSpiderFactory:
     job_ids = []
-    required_proxy = ['otodom']
+    required_proxy = ['otodom','olx']
     def __init__(self, search_form, scrapyd=None):
         self.search_form = search_form
         self.project_name = "scraper"

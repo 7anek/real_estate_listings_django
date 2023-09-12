@@ -10,6 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import requests
 # from fp.fp import FreeProxy
 from django.conf import settings
+from unidecode import unidecode
 
 import random
 import logging
@@ -87,8 +88,9 @@ def dict_filter_none(d):
     return {key: value for key, value in d.items() if value}
 
 
-def remove_accents(str):
-    return ''.join(c for c in unicodedata.normalize('NFD', str) if unicodedata.category(c) != 'Mn')
+def remove_polish_characters(input_string):
+    return unidecode(input_string)
+    # return ''.join(c for c in unicodedata.normalize('NFD', str) if unicodedata.category(c) != 'Mn')
 
 
 def lowercase_with_hyphen_str(str):
@@ -97,7 +99,7 @@ def lowercase_with_hyphen_str(str):
 
 def slugify(str):
     """używane do wygenerowania lokalizacji jako parametr urla"""
-    return lowercase_with_hyphen_str(remove_accents(str))
+    return lowercase_with_hyphen_str(remove_polish_characters(str))
 
 
 def flatten_dict(d):

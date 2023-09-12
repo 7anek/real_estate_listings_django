@@ -107,7 +107,7 @@ class MorizonSpider(Spider):
             if re.search("gratka|otodom|olx", service_id_str):
                 # oferta z innego serwisu
                 print("offer from diffrent service")
-                return False
+                return None
         # item = ScraperItem()
         details_row_set = soup.find("div", {"class": "details-row"}).find_all(
             "span", {"class": "details-row__text"}

@@ -54,6 +54,8 @@ class DomiportaSpider(Spider):
 
 
     def parse(self, response):
+        with open("../test_data/domiporta-search-2.html", "w") as file:
+            file.write(response.text)
         if self.is_testing:
             parsed_url = url_to_params_dict("http://www.domiporta.pl/mieszkanie/sprzedam/mazowieckie/grodzisk-mazowiecki?PageNumber=1&Price.From=300000&Price.To=400000")
         else:
@@ -90,10 +92,17 @@ class DomiportaSpider(Spider):
                 self.current_url = self.url_from_params(page=i)
                 yield response.follow(self.current_url)
 
-        js = re.findall(
-            r"WynikiOdslonaOgloszeniaOrganic'\, ((?:'a\d+'\,?)+)", soup.prettify(), re.MULTILINE
-        )
-        ids = re.findall("\d+", js[0])
+        ids_raw = re.findall(r"WynikiOdslonaOgloszeniaOrganic'\, ((?:'a.*\d+'\,?)+)", str(soup))
+        if not ids_raw:
+            #trzeba by parsować kod html żeby wyciągnąć urle ofert
+            return None
+        ids_str = ids_raw[0]
+        ids_list=ids_str.split(",")
+        ids = [re.search(r'\d+', _).group() for _ in ids_list if '/DPRP/' not in _]
+        # js = re.findall(
+        #     r"WynikiOdslonaOgloszeniaOrganic'\, ((?:'a\d+'\,?)+)", soup.prettify(), re.MULTILINE
+        # )
+        # ids = re.findall("\d+", js[0])
         property_type = domiporta.property_type_mapping[
             self.search_form["property_type"]
         ]
@@ -111,6 +120,9 @@ class DomiportaSpider(Spider):
                 yield response.follow(url + offer, callback=self.parse_offer)
 
     def parse_offer(self, response):
+        if self.first_offer_detail:
+            with open("../test_data/domiporta-details-2.html", "w") as file:
+                file.write(response.text)
         # if self.first_offer_detail:
         #     with open("/home/janek/python/property_scraper/test_data/domiporta-details.html", "w") as file:
         #         file.write(response.text)

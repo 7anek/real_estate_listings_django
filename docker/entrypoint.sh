@@ -3,6 +3,8 @@
 python manage.py makemigrations
 python manage.py migrate
 
+pip install unidecode
+
 pip install celery
 pip install redis
 
