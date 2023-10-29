@@ -31,6 +31,5 @@ The project is delivered as Docker containers. The docker-compose.yml file conta
 
 ## Running the Project:
 To run the project, use the following command:
-```sudo docker-compose --env-file env/.env.prod -f docker/docker-compose.yml up --build
-
+``` sudo docker-compose --env-file env/.env.prod -f docker/docker-compose.yml up --build
 
