@@ -10,6 +10,7 @@ import requests
 
 class ScrapydSpiderFactory:
     job_ids = []
+    # Lista pająków, które wymagają użycia proxy z powodu blokowania
     required_proxy = ['otodom','olx']
     def __init__(self, search_form, scrapyd=None):
         self.search_form = search_form
